@@ -1,0 +1,55 @@
+# Build and intermediate files
+*.obj
+*.pch
+*.idb
+*.pdb
+*.ilk
+*.aps
+*.ncb
+*.suo
+*.opt
+*.plg
+*.log
+*.tlog
+*.lastbuildstate
+*.vspscc
+*.vssscc
+*.cache
+
+# Visual Studio workspace and project files
+*.vcxproj.user
+*.vcxproj.filters
+*.ruleset
+*.sln.docstates
+
+# Visual Studio Code files
+.vscode/
+
+# Output directories
+[Bb]in/
+[Dd]ebug*/
+[Rr]elease*/
+x64/
+x86/
+
+# Visual Studio database and symbol files
+*.opensdf
+*.sdf
+*.ipch
+*.VC.db
+*.VC.opendb
+
+# Visual Studio temporary files
+*.tmp
+*.log
+
+# V17 folder (specific to your project)
+v17/
+
+# Visual Studio solution-specific settings
+.vs/
+
+# Other OS or editor-specific files
+.DS_Store
+Thumbs.db
+*.swp
