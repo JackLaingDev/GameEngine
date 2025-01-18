@@ -2,6 +2,7 @@
 #define Component_H
 
 #include <iostream>
+#include <vector>
 #include <SFML/System.hpp>
 
 // Class declaration
@@ -43,8 +44,7 @@ public:
 	float rotation; // In degrees (SFML uses degrees)
 	sf::Vector2f scale;
 
-	TransformComponent() : position(0.0f, 0.0f), rotation(0.0f), scale(1.0f, 1.0f) {}
-	TransformComponent(float x, float y) : position(x, y), rotation(0.0f), scale(1.0f, 1.0f) {}
+	TransformComponent(float x, float y);
 };
 
 //
@@ -72,7 +72,7 @@ public:
 		~Region() {}
 	};
 
-	std::vector<Region> regions;
+	std::vector<std::unique_ptr<Region>> regions;
 
 	~TerrainColliderComponent() noexcept override {}
 
