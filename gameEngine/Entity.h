@@ -1,15 +1,19 @@
-#ifndef MYCLASS_H  // Include guard to prevent multiple inclusions
-#define MYCLASS_H
+#ifndef Entity_H 
+#define Entity_H
 
-#include <iostream>  // Include necessary libraries
+#include <iostream> 
 
 // Class declaration
-class MyClass {
-public:
-    
-
+class Entity {
 private:
+    int id;
+
+public:
+    explicit Entity(int id);
+    ~Entity();
+
+    int getId();
     
 };
 
-#endif // MYCLASS_H
+#endif 
