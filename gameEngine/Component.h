@@ -1,7 +1,8 @@
 #ifndef Component_H 
 #define Component_H
 
-#include <iostream> 
+#include <iostream>
+#include <SFML/System.hpp>
 
 // Class declaration
 class Component {
@@ -36,25 +37,14 @@ public:
 };
 
 //
-class MoveComponent : public Component {
-private:
-
+class TransformComponent : public Component {
 public:
-	int x, y;
+	sf::Vector2f position;
+	float rotation; // In degrees (SFML uses degrees)
+	sf::Vector2f scale;
 
-	MoveComponent(int x, int y);
-
-};
-
-//
-class PositionComponent : public Component {
-private:
-
-public:
-	float x, y;
-
-	PositionComponent(float x, float y);
-
+	TransformComponent() : position(0.0f, 0.0f), rotation(0.0f), scale(1.0f, 1.0f) {}
+	TransformComponent(float x, float y) : position(x, y), rotation(0.0f), scale(1.0f, 1.0f) {}
 };
 
 //
@@ -89,29 +79,6 @@ public:
 	void addRegion(float x, float y, float width, float height);
 
 };
-
-//
-class PlayerComponent : public Component {
-private:
-
-public:
-	int playerId;
-
-	PlayerComponent(int PlayerId);
-
-};
-
-//
-class EnemyComponent : public Component {
-private:
-
-public:
-	int enemyId;
-
-	EnemyComponent(int enemyId);
-
-};
-
 
 
 #endif 
