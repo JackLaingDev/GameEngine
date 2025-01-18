@@ -18,6 +18,9 @@ public:
 
     template <typename T, typename... Args>
     void addComponent(Entity entity, Args... args);
+    
+    template <typename T>
+    T* getComponent(Entity entity);
 
 };
 
