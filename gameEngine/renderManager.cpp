@@ -1,6 +1,7 @@
 #include "renderManager.h"
 
-RenderManager::RenderManager(std::unique_ptr<sf::RenderWindow> window) : window(std::move(window))
+RenderManager::RenderManager(std::unique_ptr<sf::RenderWindow> window, EntityManager* entityManager) 
+	: window(std::move(window)), entityManager(entityManager)
 {
 }
 
