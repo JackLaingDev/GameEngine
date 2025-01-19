@@ -14,6 +14,8 @@ public:
     
     RenderManager(std::unique_ptr<sf::RenderWindow> window);
 
+    void render();
+
 };
 
 #endif 
