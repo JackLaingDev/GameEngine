@@ -1,6 +1,7 @@
 #include "GameLoop.h"
 
-GameLoop::GameLoop(std::unique_ptr<EntityManager> em) : em(std::move(em)), isRunning(false) {}
+GameLoop::GameLoop(std::unique_ptr<EntityManager> entityManager, std::unique_ptr<EventManager> eventManager)
+	: entityManager(std::move(entityManager)), eventManager(std::move(eventManager)), isRunning(false) {}
 
 
 void GameLoop::run()

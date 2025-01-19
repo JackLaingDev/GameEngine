@@ -136,6 +136,7 @@
   <ItemGroup>
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityManager.cpp" />
+    <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="gameEngine.cpp" />
     <ClCompile Include="Components.cpp" />
     <ClCompile Include="GameLoop.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="Event.h" />
+    <ClInclude Include="EventManager.h" />
     <ClInclude Include="GameLoop.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

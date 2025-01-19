@@ -7,8 +7,9 @@
 
 int main()
 {
-    std::unique_ptr em = std::make_unique<EntityManager>();
-    GameLoop game(std::move(em));
+    std::unique_ptr entityManager = std::make_unique<EntityManager>();
+    std::unique_ptr eventManager = std::make_unique<EventManager>();
+    GameLoop game(std::move(entityManager), std::move(eventManager));
 
     game.run();
 }
