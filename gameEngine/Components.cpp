@@ -10,7 +10,7 @@ HealthComponent::HealthComponent(int health) : health(health) {};
 
 VelocityComponent::VelocityComponent(float velocity) : velocity(velocity) {};
 
-TransformComponent::TransformComponent(float x, float y) : position(x, y), rotation(0.0f), scale(1.0f, 1.0f) {};
+TransformComponent::TransformComponent(sf::Vector2f position) : position(position), rotation(0.0f), scale(1.0f, 1.0f) {};
 
 ColliderComponent::ColliderComponent(float x, float y, int width, int height) : x(x), y(y), width(width), height(height) {};
 
@@ -23,4 +23,8 @@ void TerrainColliderComponent::addRegion(float x, float y, float width, float he
 PlayerComponent::PlayerComponent(int playerId) : playerId(playerId) {};
 
 RectangleComponent::RectangleComponent(sf::RectangleShape rectangle, sf::Vector2f size, sf::Color colour)
-	: rectangle(rectangle), size(size), colour(colour) {}
+	: rectangle(rectangle), size(size), colour(colour) 
+{
+	rectangle.setSize(size);
+	rectangle.setFillColor(colour);
+}

@@ -16,8 +16,11 @@ void GameLoop::run()
 {
 	this->isRunning = true;
 
+	Entity testEntity(1);
+	sf::RectangleShape rect;
 	// Initialise Entities
-
+	entityManager->addComponent<TransformComponent>(testEntity, sf::Vector2f(100, 100));
+	entityManager->addComponent<RectangleComponent>(testEntity, rect, sf::Vector2f(100, 100), sf::Color::Red);
 
 	// Game Loop
 	while (isRunning) {
@@ -27,6 +30,18 @@ void GameLoop::run()
 		// update systems
 		// process events
 		// render
+
+
+		// Check for exit
+		auto win = renderManager->getWindow();
+		while (const std::optional eventSF = win->pollEvent()) {
+			if (eventSF->is<sf::Event::Closed>()) {
+				isRunning = false;
+			}
+			
+		}
+
+		renderManager->render();
 
 	}
 }

@@ -45,7 +45,7 @@ public:
 	float rotation; // In degrees (SFML uses degrees)
 	sf::Vector2f scale;
 
-	TransformComponent(float x, float y);
+	TransformComponent(sf::Vector2f position);
 };
 
 //
