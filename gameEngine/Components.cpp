@@ -21,3 +21,6 @@ void TerrainColliderComponent::addRegion(float x, float y, float width, float he
 }
 
 PlayerComponent::PlayerComponent(int playerId) : playerId(playerId) {};
+
+RectangleComponent::RectangleComponent(sf::RectangleShape rectangle, sf::Vector2f size, sf::Color colour)
+	: rectangle(rectangle), size(size), colour(colour) {}

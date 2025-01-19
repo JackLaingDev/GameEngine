@@ -105,6 +105,8 @@ public:
 	sf::Vector2f size;
 	sf::Color colour;
 
+	RectangleComponent(sf::RectangleShape rectangle, sf::Vector2f size, sf::Color colour);
+
 };
 
 
