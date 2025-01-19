@@ -13,7 +13,8 @@ void InputManager::update() {
     sf::Keyboard::Key::A,
     sf::Keyboard::Key::S,
     sf::Keyboard::Key::D,
-    sf::Keyboard::Key::Space
+    sf::Keyboard::Key::Space,
+    sf::Keyboard::Key::Escape
     };
 
      // event type will always be keypress for input manager as its only looking for keypreses
