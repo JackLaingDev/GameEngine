@@ -19,3 +19,5 @@ void TerrainColliderComponent::addRegion(float x, float y, float width, float he
 	Region region = Region(x, y, width, height);
 	regions.push_back(std::make_unique<Region>(region));
 }
+
+PlayerComponent::PlayerComponent(int playerId) : playerId(playerId) {};

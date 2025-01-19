@@ -80,5 +80,18 @@ public:
 
 };
 
+//
+class PlayerComponent : public Component {
+
+private:
+
+public:
+
+	int playerId;
+	
+	PlayerComponent(int playerId);
+
+};
+
 
 #endif 
