@@ -3,6 +3,7 @@
 
 #include <iostream> 
 #include <variant>
+#include <SFML/Graphics.hpp>
 
 // Enum Classes
 enum class eventType {
@@ -38,7 +39,7 @@ struct terrainCollisionData
 };
 
 struct keyPressData {
-	char key;
+	sf::Keyboard::Key key;
 };
 
 struct movePlayerData

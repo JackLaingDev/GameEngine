@@ -27,4 +27,5 @@ T* EntityManager::getComponent(Entity entity)
 		}
 
 	}
+	return nullptr;
 }
