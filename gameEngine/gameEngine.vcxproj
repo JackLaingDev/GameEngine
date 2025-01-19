@@ -141,6 +141,7 @@
     <ClCompile Include="Components.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="RenderManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -153,6 +154,7 @@
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="RenderManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
