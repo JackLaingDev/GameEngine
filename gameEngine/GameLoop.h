@@ -10,10 +10,12 @@
 class GameLoop {
 private:
 
+	// Systems
 	std::unique_ptr<EntityManager> entityManager;
 	std::unique_ptr<EventManager> eventManager;
 	std::unique_ptr<InputManager> inputManager;
 	std::unique_ptr<sf::RenderWindow> window;
+
 	bool isRunning;
 
 public:
