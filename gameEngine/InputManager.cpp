@@ -75,6 +75,7 @@ void InputManager::update() {
                 // Set event attributes
                 event.type = eventType::keyPress;
                 event.data = { kpData };
+                em->publish
             }
         }
     }
