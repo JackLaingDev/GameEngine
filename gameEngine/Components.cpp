@@ -25,6 +25,6 @@ PlayerComponent::PlayerComponent(int playerId) : playerId(playerId) {};
 RectangleComponent::RectangleComponent(sf::RectangleShape rectangle, sf::Vector2f size, sf::Color colour)
 	: rectangle(rectangle), size(size), colour(colour) 
 {
-	rectangle.setSize(size);
-	rectangle.setFillColor(colour);
+	this->rectangle.setSize(size);
+	this->rectangle.setFillColor(colour);
 }
