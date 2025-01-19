@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <SFML/System.hpp>
+#include <SFML/Graphics.hpp>
 
 // Class declaration
 class Component {
@@ -92,6 +93,20 @@ public:
 	PlayerComponent(int playerId);
 
 };
+
+// USED FOR TEST GAME
+class RectangleComponent : public Component {
+private:
+
+
+public:
+
+	sf::RectangleShape rectangle;
+	sf::Vector2f size;
+	sf::Color colour;
+
+};
+
 
 
 #endif 
