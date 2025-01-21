@@ -34,7 +34,7 @@ void InputManager::update() {
                     event.type = eventType::keyPress;
                     event.data = keyPressData{ key };
 
-                    em->publish(event); // Publish the event to the EventManager
+                    em->events.push_back(event); // Publish the event to the EventManager
                 }
             }
         }

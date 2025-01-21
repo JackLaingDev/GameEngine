@@ -6,12 +6,15 @@ void EventManager::subscribe(eventType type, std::function<void(const Event&)> c
     subscribers[type].push_back(callback);
 }
 
-void EventManager::publish(const Event& event) {
-    // Check if there are subscribers for the event's type
-    if (subscribers.find(event.type) != subscribers.end()) {
-        // Invoke each callback with the event
-        for (auto& callback : subscribers[event.type]) {
-            callback(event);
+void EventManager::publish() {
+
+    for (auto& event : events) {
+        // Check if there are subscribers for the event's type
+        if (subscribers.find(event.type) != subscribers.end()) {
+            // Invoke each callback with the event
+            for (auto& callback : subscribers[event.type]) {
+                callback(event);
+            }
         }
     }
 }

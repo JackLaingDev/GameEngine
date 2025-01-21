@@ -18,9 +18,13 @@ void GameLoop::run()
 
 	Entity testEntity(1);
 	sf::RectangleShape rect;
+
 	// Initialise Entities
 	entityManager->addComponent<TransformComponent>(testEntity, sf::Vector2f(100, 100));
 	entityManager->addComponent<RectangleComponent>(testEntity, rect, sf::Vector2f(100, 100), sf::Color::Red);
+
+	// Subscribe Events
+	//eventManager->subscribe(eventType::keyPress, movementManager->move());
 
 	// Game Loop
 	while (isRunning) {
