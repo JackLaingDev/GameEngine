@@ -15,9 +15,10 @@ int main()
     std::unique_ptr<EventManager> eventManager = std::make_unique<EventManager>();
     std::unique_ptr<InputManager> inputManager = std::make_unique<InputManager>(window.get(), eventManager.get());
     std::unique_ptr<RenderManager> renderManager = std::make_unique<RenderManager>(std::move(window), entityManager.get());
+    std::unique_ptr<MovementManager> movementManager = std::make_unique<MovementManager>(entityManager.get());
 
     GameLoop game(std::move(entityManager), std::move(eventManager), std::move(inputManager),
-        std::move(renderManager));
+        std::move(renderManager), std::move(movementManager));
 
     game.run();
 }
