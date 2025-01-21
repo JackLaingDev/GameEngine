@@ -16,7 +16,7 @@ public:
 
 	MovementManager(EntityManager* entityManager);
 
-	void move(Event& event);
+	void move(const Event& event);
 
 };
 

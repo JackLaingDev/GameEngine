@@ -4,7 +4,31 @@ MovementManager::MovementManager(EntityManager* entityManager) : entityManager(e
 {
 }
 
-void MovementManager::move(Event& event)
+void MovementManager::move(const Event& event)
 {
+	Entity entity(1);
+	auto velocityComponent = entityManager->getComponent<VelocityComponent>(entity);
+	auto transformComponent = entityManager->getComponent<TransformComponent>(entity);
 
+	if (event.type == eventType::keyPress) {
+
+		auto eventData = std::get<keyPressData>(event.data);
+		auto currentPos = transformComponent->position;
+
+		switch (eventData.key)
+		{
+		case sf::Keyboard::Key::W:
+			transformComponent->position = sf::Vector2f(currentPos.x, currentPos.y - velocityComponent->velocity); 
+			break;
+		case sf::Keyboard::Key::A:
+			transformComponent->position = sf::Vector2f(currentPos.x - velocityComponent->velocity, currentPos.y);
+			break;
+		case sf::Keyboard::Key::S:
+			transformComponent->position = sf::Vector2f(currentPos.x, currentPos.y + velocityComponent->velocity);
+			break;
+		case sf::Keyboard::Key::D:
+			transformComponent->position = sf::Vector2f(currentPos.x + velocityComponent->velocity, currentPos.y);
+			break;
+		}
+	}
 }

@@ -24,9 +24,13 @@ void GameLoop::run()
 	// Initialise Entities
 	entityManager->addComponent<TransformComponent>(testEntity, sf::Vector2f(100, 100));
 	entityManager->addComponent<RectangleComponent>(testEntity, rect, sf::Vector2f(100, 100), sf::Color::Red);
+	entityManager->addComponent<PlayerComponent>(testEntity, 1);
+	entityManager->addComponent<VelocityComponent>(testEntity, 0.05);
 
 	// Subscribe Events
-	//eventManager->subscribe(eventType::keyPress, movementManager->move());
+	eventManager->subscribe(eventType::keyPress, [&](const Event& event) {
+		movementManager->move(event);
+		});
 
 	// Game Loop
 	while (isRunning) {
@@ -37,7 +41,8 @@ void GameLoop::run()
 		// process events
 		// render
 
-
+		inputManager->update();
+		eventManager->publish();
 		// Check for exit
 		auto win = renderManager->getWindow();
 		while (const std::optional eventSF = win->pollEvent()) {
