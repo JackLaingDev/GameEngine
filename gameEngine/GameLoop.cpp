@@ -25,7 +25,7 @@ void GameLoop::run()
 	entityManager->addComponent<TransformComponent>(testEntity, sf::Vector2f(100, 100));
 	entityManager->addComponent<RectangleComponent>(testEntity, rect, sf::Vector2f(100, 100), sf::Color::Red);
 	entityManager->addComponent<PlayerComponent>(testEntity, 1);
-	entityManager->addComponent<VelocityComponent>(testEntity, 5);
+	entityManager->addComponent<VelocityComponent>(testEntity, 0.3);
 
 	// Subscribe Events
 	eventManager->subscribe(eventType::keyPress, [&](const Event& event) {

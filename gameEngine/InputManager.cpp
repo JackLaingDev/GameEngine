@@ -20,24 +20,24 @@ void InputManager::update() {
      // event type will always be keypress for input manager as its only looking for keypreses
 
     // Process events
-    while (const std::optional eventSF = win->pollEvent())
+    const std::optional eventSF = win->pollEvent();
+    
+    // Check for Keypress
+        
+
+    for (const auto& key : keysToCheck)
     {
-        // Check for Keypress
-        if (eventSF->is<sf::Event::KeyPressed>()) {
+        if (sf::Keyboard::isKeyPressed(key))
+        {
+            // Create and publish custom event
+            Event event;
+            event.type = eventType::keyPress;
+            event.data = keyPressData{ key };
 
-            for (const auto& key : keysToCheck)
-            {
-                if (sf::Keyboard::isKeyPressed(key))
-                {
-                    // Create and publish custom event
-                    Event event;
-                    event.type = eventType::keyPress;
-                    event.data = keyPressData{ key };
-
-                    em->events.push_back(event); // Publish the event to the EventManager
-                }
-            }
+            em->events.push_back(event); // Publish the event to the EventManager
         }
     }
+        
+    
 }
 
