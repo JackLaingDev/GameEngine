@@ -36,19 +36,16 @@ void GameLoop::run()
 	while (isRunning) {
 
 		// Game Loop logic goes here
-		// take input
-		// update systems
-		// process events
-		// render
-
 		inputManager->update();
 		eventManager->publish();
 		eventManager->events.clear();
-		// Check for exit
+
+		// Check for exit (ADD TO CUSTOM EVENTMANAGER)
 		auto win = renderManager->getWindow();
 		while (const std::optional eventSF = win->pollEvent()) {
 			if (eventSF->is<sf::Event::Closed>()) {
 				isRunning = false;
+				win->close();
 			}
 			
 		}
