@@ -8,7 +8,7 @@
 int main()
 {
     // Initialise SFML
-    std::unique_ptr window = std::make_unique<sf::RenderWindow>(sf::VideoMode({ 800, 600 }), "SFML window");
+    std::unique_ptr window = std::make_unique<sf::RenderWindow>(sf::VideoMode({ 1700, 900 }), "SFML window");
 
     // Initialise systems
     std::unique_ptr<EntityManager> entityManager = std::make_unique<EntityManager>();
