@@ -18,16 +18,16 @@ void MovementManager::move(const Event& event)
 		switch (eventData.key)
 		{
 		case sf::Keyboard::Key::W:
-			transformComponent->position = sf::Vector2f(currentPos.x, currentPos.y - velocityComponent->velocity); 
+			transformComponent->position = sf::Vector2f(currentPos.x, currentPos.y - velocityComponent->velocity.y); 
 			break;
 		case sf::Keyboard::Key::A:
-			transformComponent->position = sf::Vector2f(currentPos.x - velocityComponent->velocity, currentPos.y);
+			transformComponent->position = sf::Vector2f(currentPos.x - velocityComponent->velocity.x, currentPos.y);
 			break;
 		case sf::Keyboard::Key::S:
-			transformComponent->position = sf::Vector2f(currentPos.x, currentPos.y + velocityComponent->velocity);
+			transformComponent->position = sf::Vector2f(currentPos.x, currentPos.y + velocityComponent->velocity.y);
 			break;
 		case sf::Keyboard::Key::D:
-			transformComponent->position = sf::Vector2f(currentPos.x + velocityComponent->velocity, currentPos.y);
+			transformComponent->position = sf::Vector2f(currentPos.x + velocityComponent->velocity.x, currentPos.y);
 			break;
 		}
 	}

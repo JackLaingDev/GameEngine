@@ -45,7 +45,7 @@ struct keyPressData {
 struct movePlayerData
 {
 	Direction direction;
-	float velocity;
+	sf::Vector2f velocity;
 };
 
 // Classes
