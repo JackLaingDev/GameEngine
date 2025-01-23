@@ -8,7 +8,7 @@
 
 HealthComponent::HealthComponent(int health) : health(health) {};
 
-VelocityComponent::VelocityComponent(float velocity) : velocity(velocity) {};
+VelocityComponent::VelocityComponent(sf::Vector2f velocity) : velocity(velocity) {};
 
 TransformComponent::TransformComponent(sf::Vector2f position) : position(position), rotation(0.0f), scale(1.0f, 1.0f) {};
 

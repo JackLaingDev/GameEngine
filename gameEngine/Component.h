@@ -32,9 +32,9 @@ class VelocityComponent : public Component {
 private: 
 
 public:
-	float velocity;
+	sf::Vector2f velocity; // x and y velocities
 
-	VelocityComponent(float velocity);
+	VelocityComponent(sf::Vector2f velocity);
 
 };
 
