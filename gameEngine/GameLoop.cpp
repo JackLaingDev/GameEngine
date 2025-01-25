@@ -5,12 +5,14 @@ GameLoop::GameLoop(std::unique_ptr<EntityManager> entityManager,
 	std::unique_ptr<InputManager> inputManager,
 	std::unique_ptr<RenderManager> renderManager,
 	std::unique_ptr<MovementManager> movementManager,
+	std::unique_ptr<CollisionManager> collisionManager,
 	std::unique_ptr<EntityFactory> entityFactory)
 	: entityManager(std::move(entityManager)),
 	eventManager(std::move(eventManager)),
 	inputManager(std::move(inputManager)),
 	renderManager(std::move(renderManager)),
 	movementManager(std::move(movementManager)),
+	collisionManager(std::move(collisionManager)),
 	entityFactory(std::move(entityFactory)),
 	isRunning(false) {
 }
