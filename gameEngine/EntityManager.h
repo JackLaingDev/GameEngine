@@ -45,6 +45,21 @@ public:
 		return nullptr;
     }
 
+	template <typename T>
+	Entity getEntityByComponent() {
+		
+		for (const auto& entity : entities) {
+			auto& componentMap = entity.second;
+
+			for (const auto& component : componentMap) {
+				if (typeid(T) == typeid(component)) {
+					return entity;
+				}
+			}
+		}
+		return nullptr;
+	}
+
 };
 
 #endif 
