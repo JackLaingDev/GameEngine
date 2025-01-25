@@ -45,22 +45,23 @@ public:
 		return nullptr;
     }
 
-	template <typename T>
-	std::vector<Entity> getEntitiesByComponent() {
-		
-		std::vector<Entity> entitiesFound;
+    template <typename T>
+    std::vector<Entity> getEntitiesByComponent() {
+        std::vector<Entity> entitiesFound;
 
-		for (const auto& entity : entities) {
-			auto& componentMap = entity.second;
+        for (const auto& entity : entities) {
+            int entityID = entity.first; // Get the entity ID
+            const auto& componentMap = entity.second; // Get the component map for this entity
 
-			for (const auto& component : componentMap) {
-				if (typeid(T) == typeid(component)) {
-					entitiesFound.push_back(entity);
-				}
-			}
-		}
-		return entitiesFound;
-	}
+            // Check if the component of type T exists in the entity's component map
+            auto it = componentMap.find(std::type_index(typeid(T)));
+            if (it != componentMap.end()) {
+                entitiesFound.emplace_back(entityID); // Add the entity to the result
+            }
+        }
+
+        return entitiesFound;
+    }
 
 };
 
