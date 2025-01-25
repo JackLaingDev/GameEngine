@@ -9,9 +9,9 @@ void RenderManager::render()
 {
 	window->clear(sf::Color::Black);
 
-	const auto& renderEntities = entityManager->getEntitiesByComponent<RectangleComponent>();
+	const auto& entitiesToRender = entityManager->getEntitiesByComponent<RectangleComponent>();
 
-	for (const auto& entity : renderEntities) {
+	for (const auto& entity : entitiesToRender) {
 		auto rect = entityManager->getComponent<RectangleComponent>(entity);
 		auto transform = entityManager->getComponent<TransformComponent>(entity);
 
