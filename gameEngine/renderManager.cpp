@@ -9,13 +9,17 @@ void RenderManager::render()
 {
 	window->clear(sf::Color::Black);
 
-	Entity entity(1);
-	auto rect = entityManager->getComponent<RectangleComponent>(entity);
-	auto transform = entityManager->getComponent<TransformComponent>(entity);
+	const auto& renderEntities = entityManager->getEntitiesByComponent<RectangleComponent>();
 
-	rect->rectangle.setPosition(transform->position);
+	for (const auto& entity : renderEntities) {
+		auto rect = entityManager->getComponent<RectangleComponent>(entity);
+		auto transform = entityManager->getComponent<TransformComponent>(entity);
 
-	window->draw(rect->rectangle);
+		rect->rectangle.setPosition(transform->position);
+
+		window->draw(rect->rectangle);
+	}
+
 	window->display();
 }
 

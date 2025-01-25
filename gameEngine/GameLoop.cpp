@@ -22,6 +22,7 @@ void GameLoop::run()
 
 	// Initialise Entities
 	entityFactory->playerEntity(1);
+	entityFactory->testEntity(2);
 
 	// Subscribe Events
 	eventManager->subscribe(eventType::keyPress, [&](const Event& event) {
