@@ -46,18 +46,20 @@ public:
     }
 
 	template <typename T>
-	Entity getEntityByComponent() {
+	std::vector<Entity> getEntitiesByComponent() {
 		
+		std::vector<Entity> entitiesFound;
+
 		for (const auto& entity : entities) {
 			auto& componentMap = entity.second;
 
 			for (const auto& component : componentMap) {
 				if (typeid(T) == typeid(component)) {
-					return entity;
+					entitiesFound.push_back(entity);
 				}
 			}
 		}
-		return nullptr;
+		return entitiesFound;
 	}
 
 };
