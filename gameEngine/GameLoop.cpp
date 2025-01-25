@@ -20,14 +20,8 @@ void GameLoop::run()
 {
 	this->isRunning = true;
 
-	Entity testEntity(1);
-	sf::RectangleShape rect;
-
 	// Initialise Entities
-	entityManager->addComponent<TransformComponent>(testEntity, sf::Vector2f(100, 100));
-	entityManager->addComponent<RectangleComponent>(testEntity, rect, sf::Vector2f(100, 100), sf::Color::Red);
-	entityManager->addComponent<PlayerComponent>(testEntity, 1);
-	entityManager->addComponent<VelocityComponent>(testEntity, sf::Vector2f(0.03, 0.03));
+	entityFactory->playerEntity(1);
 
 	// Subscribe Events
 	eventManager->subscribe(eventType::keyPress, [&](const Event& event) {

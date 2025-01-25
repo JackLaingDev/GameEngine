@@ -12,7 +12,7 @@ VelocityComponent::VelocityComponent(sf::Vector2f velocity) : velocity(velocity)
 
 TransformComponent::TransformComponent(sf::Vector2f position) : position(position), rotation(0.0f), scale(1.0f, 1.0f) {};
 
-ColliderComponent::ColliderComponent(float x, float y, int width, int height) : x(x), y(y), width(width), height(height) {};
+ColliderComponent::ColliderComponent(sf::Vector2f position, sf::Vector2f size) : position(position), size(size) {};
 
 void TerrainColliderComponent::addRegion(float x, float y, float width, float height)
 {

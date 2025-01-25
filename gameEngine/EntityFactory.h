@@ -2,8 +2,10 @@
 #define EntityFactory_H
 
 #include <iostream> 
+#include <SFML/Graphics.hpp>
 
 #include "EntityManager.h"
+#include "Component.h"
 
 // Class declaration
 class EntityFactory {
@@ -15,8 +17,8 @@ public:
 
 	EntityFactory(EntityManager* em);
 
-	static void playerEntity();
-	static void testEntity();
+	void playerEntity(int id);
+	void testEntity(int id);
 
 };
 

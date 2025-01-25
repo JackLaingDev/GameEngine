@@ -53,10 +53,10 @@ class ColliderComponent : public Component {
 private:
 
 public:
-	float x, y;
-	float width, height;
+	sf::Vector2f position;
+	sf::Vector2f size;
 
-	ColliderComponent(float x, float y, int width, int height);
+	ColliderComponent(sf::Vector2f position, sf::Vector2f size);
 
 };
 
