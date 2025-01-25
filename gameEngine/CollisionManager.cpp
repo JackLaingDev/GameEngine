@@ -20,10 +20,11 @@ void CollisionManager::collisionCheck()
 			auto collider2 = entityManager->getComponent<ColliderComponent>(collidableEntities[k]);
 
 			if (collider1 != collider2) {
-				if (isIn(*collider1, *collider2)) {
+				bool collisionDetected = isIn(*collider1, *collider2);
+				if (collisionDetected) {
 					std::cout << "Collision Detected\n";
 				}
-				else {
+				else if (collisionDetected){
 					std::cout << "No Collision Detected\n";
 				}
 			}

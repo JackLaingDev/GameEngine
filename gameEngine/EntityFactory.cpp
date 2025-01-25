@@ -23,7 +23,7 @@ void EntityFactory::testEntity(int id)
 {
 	Entity entity(id);
 	sf::RectangleShape rect;
-	sf::Vector2f pos(500, 300);
+	sf::Vector2f pos(99, 99);
 	sf::Vector2f size(100, 100);
 	sf::Vector2f velocity(0.04, 0.04);
 
