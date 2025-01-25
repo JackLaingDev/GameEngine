@@ -16,10 +16,10 @@ int main()
     std::unique_ptr<InputManager> inputManager = std::make_unique<InputManager>(window.get(), eventManager.get());
     std::unique_ptr<RenderManager> renderManager = std::make_unique<RenderManager>(std::move(window), entityManager.get());
     std::unique_ptr<MovementManager> movementManager = std::make_unique<MovementManager>(entityManager.get());
-    std::unique_ptr<CollisionManager> collisionManager = std::make_unique<CollisionManager>();
+    std::unique_ptr<CollisionManager> collisionManager = std::make_unique<CollisionManager>(eventManager.get(), entityManager.get());
     std::unique_ptr<EntityFactory> entityFactory = std::make_unique<EntityFactory>(entityManager.get());
 
-
+    // Transfer ownership to game loop
     GameLoop game(std::move(entityManager), std::move(eventManager), std::move(inputManager),
         std::move(renderManager), std::move(movementManager), std::move(collisionManager), std::move(entityFactory));
 

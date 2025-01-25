@@ -36,8 +36,10 @@ void GameLoop::run()
 
 		// Game Loop logic goes here
 		inputManager->update();
+		collisionManager->collisionCheck();
 		eventManager->publish();
 		eventManager->events.clear();
+
 
 		// Check for exit (ADD TO CUSTOM EVENTMANAGER)
 		auto win = renderManager->getWindow();
