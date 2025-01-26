@@ -16,7 +16,7 @@ void CollisionManager::collisionCheck()
 		return;
 	}
 	for (int i = 0; i < collidableEntities.size(); ++i) {
-		for (int k = 0; k < collidableEntities.size(); ++k) {
+		for (int k = i+1; k < collidableEntities.size(); ++k) {
 			auto collider1 = entityManager->getComponent<ColliderComponent>(collidableEntities[i]);
 			auto collider2 = entityManager->getComponent<ColliderComponent>(collidableEntities[k]);
 
