@@ -146,6 +146,7 @@
     <ClCompile Include="MovementManager.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="RenderManager.cpp" />
+    <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -163,6 +164,7 @@
     <ClInclude Include="MovementManager.h" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="RenderManager.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
