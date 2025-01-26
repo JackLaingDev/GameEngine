@@ -6,13 +6,13 @@
 // Class declaration
 class Entity {
 private:
-    int id;
+    
 
 public:
     explicit Entity(int id);
     ~Entity();
 
-    int getId();
+    int id;
     
 };
 

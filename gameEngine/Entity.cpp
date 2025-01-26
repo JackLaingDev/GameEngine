@@ -1,15 +1,11 @@
 #include "Entity.h"    // Include the corresponding header file
 
-Entity::Entity(int id)
+Entity::Entity(int id) : id(id)
 {
-	this->id = id;
 }
 
 Entity::~Entity()
 {
 }
 
-int Entity::getId()
-{
-	return id;
-}
+

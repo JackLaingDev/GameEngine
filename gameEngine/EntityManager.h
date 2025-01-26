@@ -18,7 +18,7 @@ public:
 
     template <typename T, typename... Args>
     void addComponent(Entity entity, Args... args) {
-		int entityID = entity.getId();
+		int entityID = entity.id;
 
 		// Accesses the std::unordered_map for a given entity and creates and stores a unique pointer to its component
 		entities[entityID][std::type_index(typeid(T))] = std::make_unique<T>(std::forward<Args>(args)...);
@@ -26,7 +26,7 @@ public:
     
     template <typename T>
     T* getComponent(Entity entity) {
-		int entityID = entity.getId();
+		int entityID = entity.id;
 
 		// Check entity exists
 		if (entities.find(entityID) != entities.end()) {
