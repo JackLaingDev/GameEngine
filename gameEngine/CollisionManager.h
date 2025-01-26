@@ -20,7 +20,6 @@ public:
 	CollisionManager(EventManager* eventManager, EntityManager* entityManager);
 
 	void collisionCheck();
-	bool isIn(ColliderComponent& collider1, ColliderComponent& collider2);
 
 };
 
