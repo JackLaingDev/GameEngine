@@ -11,6 +11,7 @@ void MovementManager::move(const Event& event)
 	for (const auto& entity : entitiesToMove) {
 		auto velocityComponent = entityManager->getComponent<VelocityComponent>(entity);
 		auto transformComponent = entityManager->getComponent<TransformComponent>(entity);
+		auto colliderComponent = entityManager->getComponent<ColliderComponent>(entity);
 
 		if (event.type == eventType::keyPress) {
 
@@ -21,15 +22,19 @@ void MovementManager::move(const Event& event)
 			{
 			case sf::Keyboard::Key::W:
 				transformComponent->position = sf::Vector2f(currentPos.x, currentPos.y - velocityComponent->velocity.y);
+				colliderComponent->position = sf::Vector2f(currentPos.x, currentPos.y - velocityComponent->velocity.y);
 				break;
 			case sf::Keyboard::Key::A:
 				transformComponent->position = sf::Vector2f(currentPos.x - velocityComponent->velocity.x, currentPos.y);
+				colliderComponent->position = sf::Vector2f(currentPos.x - velocityComponent->velocity.x, currentPos.y);
 				break;
 			case sf::Keyboard::Key::S:
 				transformComponent->position = sf::Vector2f(currentPos.x, currentPos.y + velocityComponent->velocity.y);
+				colliderComponent->position = sf::Vector2f(currentPos.x, currentPos.y + velocityComponent->velocity.y);
 				break;
 			case sf::Keyboard::Key::D:
 				transformComponent->position = sf::Vector2f(currentPos.x + velocityComponent->velocity.x, currentPos.y);
+				colliderComponent->position = sf::Vector2f(currentPos.x + velocityComponent->velocity.x, currentPos.y);
 				break;
 			}
 		}

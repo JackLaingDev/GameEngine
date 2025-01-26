@@ -22,9 +22,9 @@ void CollisionManager::collisionCheck()
 			if (collider1 != collider2) {
 				bool collisionDetected = isIn(*collider1, *collider2);
 				if (collisionDetected) {
-					std::cout << "Collision Detected\n";
+					std::cout << "Collision Detected\n"; // add event logic
 				}
-				else if (collisionDetected){
+				else if (!collisionDetected){
 					std::cout << "No Collision Detected\n";
 				}
 			}
