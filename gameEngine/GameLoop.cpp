@@ -24,6 +24,7 @@ GameLoop::GameLoop(std::unique_ptr<EntityManager> entityManager,
 void GameLoop::run()
 {
 	this->isRunning = true;
+	auto win = renderManager->getWindow();
 
 	// Initialise Entities
 	entityFactory->playerEntity(1);
@@ -45,20 +46,16 @@ void GameLoop::run()
 		collisionManager->collisionCheck();
 		eventManager->publish();
 		eventManager->events.clear();
+		renderManager->renderTerrain();
+		renderManager->renderEntities();
 
 
-		// Check for exit (ADD TO CUSTOM EVENTMANAGER)
-		auto win = renderManager->getWindow();
-		while (const std::optional eventSF = win->pollEvent()) {
+		// Check for exit
+		if (const std::optional eventSF = win->pollEvent()) {
 			if (eventSF->is<sf::Event::Closed>()) {
 				isRunning = false;
 				win->close();
 			}
-			
 		}
-
-		renderManager->renderTerrain();
-		renderManager->renderEntities();
-
 	}
 }
