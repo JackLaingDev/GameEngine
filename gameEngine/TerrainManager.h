@@ -6,18 +6,6 @@
 #include <vector>
 
 
-class TerrainManager {
-private:
-
-	std::vector<region> regions;
-
-public:
-
-	void addRegion(sf::Vector2f pos, sf::Vector2f size);
-	std::vector<region> getRegions();
-
-};
-
 class region {
 private:
 	sf::Vector2f pos;
@@ -32,6 +20,21 @@ public:
 	sf::RectangleShape getRect();
 
 };
+
+
+class TerrainManager {
+private:
+
+	std::vector<region> regions;
+
+public:
+
+	void addRegion(sf::Vector2f pos, sf::Vector2f size, sf::Color colour);
+	std::vector<region> getRegions();
+
+};
+
+
 
 
 #endif 

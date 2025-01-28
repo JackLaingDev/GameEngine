@@ -1,8 +1,16 @@
 #include "TerrainManager.h"
 
-void TerrainManager::addRegion(sf::Vector2f pos, sf::Vector2f size)
+void TerrainManager::addRegion(sf::Vector2f pos, sf::Vector2f size, sf::Color colour)
 {
+	regions.emplace_back(pos, size, colour);
 }
+
+std::vector<region> TerrainManager::getRegions()
+{
+	return regions;
+}
+
+
 
 region::region(sf::Vector2f pos, sf::Vector2f size, sf::Color colour) : pos(pos), size(size), colour(colour)
 {
