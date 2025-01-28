@@ -11,13 +11,12 @@ private:
 	sf::Vector2f pos;
 	sf::Vector2f size;
 	sf::Color colour;
-	sf::RectangleShape rect;
 
 public:
 
-	region(sf::Vector2f pos, sf::Vector2f size, sf::Color colour);
+	sf::RectangleShape rect;
 
-	sf::RectangleShape getRect();
+	region(sf::Vector2f pos, sf::Vector2f size, sf::Color colour);
 
 };
 
@@ -25,14 +24,15 @@ public:
 class TerrainManager {
 private:
 
-	std::vector<region> regions;
+	
 
 public:
+
+	std::vector<region> regions;
 
 	TerrainManager();
 
 	void addRegion(sf::Vector2f pos, sf::Vector2f size, sf::Color colour);
-	std::vector<region> getRegions();
 
 };
 

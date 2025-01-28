@@ -19,7 +19,9 @@ public:
     
     RenderManager(std::unique_ptr<sf::RenderWindow> window, EntityManager* entityManager, TerrainManager* terrainManager);
 
-    void render();
+    void renderEntities();
+    void renderTerrain();
+
     sf::RenderWindow* getWindow();
 
 };

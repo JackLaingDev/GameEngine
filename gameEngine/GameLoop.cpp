@@ -54,7 +54,7 @@ void GameLoop::run()
 			
 		}
 
-		renderManager->render();
+		renderManager->renderEntities();
 
 	}
 }

@@ -5,9 +5,8 @@ RenderManager::RenderManager(std::unique_ptr<sf::RenderWindow> window, EntityMan
 {
 }
 
-void RenderManager::render()
+void RenderManager::renderEntities()
 {
-	window->clear(sf::Color::Black);
 
 	const auto& entitiesToRender = entityManager->getEntitiesByComponent<RectangleComponent>();
 
@@ -21,6 +20,17 @@ void RenderManager::render()
 	}
 
 	window->display();
+}
+
+void RenderManager::renderTerrain()
+{
+	window->clear(sf::Color::Black);
+
+	auto regions = terrainManager->regions;
+
+	for (const auto& region : regions) {
+		window->draw(region.rect);
+	}
 }
 
 sf::RenderWindow* RenderManager::getWindow()
