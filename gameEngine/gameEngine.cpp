@@ -22,7 +22,8 @@ int main()
 
     // Transfer ownership to game loop
     GameLoop game(std::move(entityManager), std::move(eventManager), std::move(inputManager),
-        std::move(renderManager), std::move(movementManager), std::move(collisionManager), std::move(entityFactory));
+        std::move(renderManager), std::move(movementManager), std::move(collisionManager),std::move(terrainManager),
+        std::move(entityFactory));
 
     game.run();
 }
