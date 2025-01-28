@@ -29,6 +29,9 @@ void GameLoop::run()
 	entityFactory->playerEntity(1);
 	entityFactory->testEntity(2);
 
+	// Add Terrain
+	terrainManager->addRegion(sf::Vector2f(700, 500), sf::Vector2f(100, 100), sf::Color::Blue);
+
 	// Subscribe Events
 	eventManager->subscribe(eventType::keyPress, [&](const Event& event) {
 		movementManager->move(event);
@@ -54,6 +57,7 @@ void GameLoop::run()
 			
 		}
 
+		renderManager->renderTerrain();
 		renderManager->renderEntities();
 
 	}
