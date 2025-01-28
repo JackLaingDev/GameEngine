@@ -10,6 +10,7 @@
 #include "MovementManager.h"
 #include "EntityFactory.h"
 #include "CollisionManager.h"
+#include "TerrainManager.h"
 
 class GameLoop {
 private:

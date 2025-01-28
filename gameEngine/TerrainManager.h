@@ -29,6 +29,8 @@ private:
 
 public:
 
+	TerrainManager();
+
 	void addRegion(sf::Vector2f pos, sf::Vector2f size, sf::Color colour);
 	std::vector<region> getRegions();
 

@@ -7,6 +7,7 @@ GameLoop::GameLoop(std::unique_ptr<EntityManager> entityManager,
 	std::unique_ptr<MovementManager> movementManager,
 	std::unique_ptr<CollisionManager> collisionManager,
 	std::unique_ptr<EntityFactory> entityFactory)
+
 	: entityManager(std::move(entityManager)),
 	eventManager(std::move(eventManager)),
 	inputManager(std::move(inputManager)),
