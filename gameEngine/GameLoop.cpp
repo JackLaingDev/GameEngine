@@ -7,7 +7,8 @@ GameLoop::GameLoop(std::unique_ptr<EntityManager> entityManager,
 	std::unique_ptr<MovementManager> movementManager,
 	std::unique_ptr<CollisionManager> collisionManager,
 	std::unique_ptr<TerrainManager> terrainManager,
-	std::unique_ptr<EntityFactory> entityFactory)
+	std::unique_ptr<EntityFactory> entityFactory,
+	std::unique_ptr<TerrainCollisionManager> terrainCollisionManager)
 
 	: entityManager(std::move(entityManager)),
 	eventManager(std::move(eventManager)),
@@ -17,6 +18,7 @@ GameLoop::GameLoop(std::unique_ptr<EntityManager> entityManager,
 	collisionManager(std::move(collisionManager)),
 	terrainManager(std::move(terrainManager)),
 	entityFactory(std::move(entityFactory)),
+	terrainCollisionManager(std::move(terrainCollisionManager)),
 	isRunning(false) {
 }
 
