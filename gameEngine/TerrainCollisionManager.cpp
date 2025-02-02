@@ -8,3 +8,8 @@ TerrainCollisionManager::TerrainCollisionManager(EventManager* eventManager,
 	terrainManager(terrainManager)
 {
 }
+
+void TerrainCollisionManager::terrainCollisionCheck()
+{
+	
+}

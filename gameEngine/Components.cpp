@@ -14,10 +14,7 @@ TransformComponent::TransformComponent(sf::Vector2f position) : position(positio
 
 ColliderComponent::ColliderComponent(sf::Vector2f position, sf::Vector2f size) : position(position), size(size) {};
 
-void TerrainColliderComponent::addRegion(float x, float y, float width, float height)
-{
-	regions.emplace_back(x, y, width, height);
-}
+TerrainColliderComponent::TerrainColliderComponent(sf::Vector2f position, sf::Vector2f size) : position(position), size(size) {};
 
 PlayerComponent::PlayerComponent(int playerId) : playerId(playerId) {};
 

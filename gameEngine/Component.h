@@ -65,19 +65,11 @@ class TerrainColliderComponent : public Component {
 private:
 
 public:
-	struct Region {
-		float x, y;
-		float width, height;
+	
+	sf::Vector2f position;
+	sf::Vector2f size;
 
-		Region(float x, float y, float width, float height) : x(x), y(y), width(width), height(height) {};
-		~Region() {}
-	};
-
-	std::vector<std::unique_ptr<Region>> regions;
-
-	~TerrainColliderComponent() noexcept override {}
-
-	void addRegion(float x, float y, float width, float height);
+	TerrainColliderComponent(sf::Vector2f position, sf::Vector2f size);
 
 };
 
