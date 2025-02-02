@@ -8,12 +8,12 @@
 
 class Region {
 private:
-	sf::Vector2f pos;
-	sf::Vector2f size;
-	sf::Color colour;
 
 public:
 
+	sf::Vector2f pos;
+	sf::Vector2f size;
+	sf::Color colour;
 	sf::RectangleShape rect;
 
 	Region(sf::Vector2f pos, sf::Vector2f size, sf::Color colour);

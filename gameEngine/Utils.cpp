@@ -19,3 +19,23 @@ bool Utils::isIn(ColliderComponent& collider1, ColliderComponent& collider2)
 		return false;
 	}
 }
+
+bool Utils::isIn(TerrainColliderComponent& collider, Region& region)
+{
+	auto colliderPos = collider.position;
+	auto regionPos = region.pos;
+
+	auto colliderSize = collider.size;
+	auto regionSize = region.size;
+
+	bool inX = !(colliderPos.x + colliderSize.x <= regionPos.x || colliderPos.x >= regionPos.x + regionSize.x);
+	bool inY = !(colliderPos.y + colliderSize.y <= regionPos.y || colliderPos.y >= regionPos.y + regionSize.y);
+
+
+	if (inX && inY) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
