@@ -16,8 +16,7 @@ ColliderComponent::ColliderComponent(sf::Vector2f position, sf::Vector2f size) :
 
 void TerrainColliderComponent::addRegion(float x, float y, float width, float height)
 {
-	Region region = Region(x, y, width, height);
-	regions.push_back(std::make_unique<Region>(region));
+	regions.emplace_back(x, y, width, height);
 }
 
 PlayerComponent::PlayerComponent(int playerId) : playerId(playerId) {};
