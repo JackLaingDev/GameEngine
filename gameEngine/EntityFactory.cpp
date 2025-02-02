@@ -17,6 +17,7 @@ void EntityFactory::playerEntity(int id)
 	em->addComponent<PlayerComponent>(entity, 1);
 	em->addComponent<VelocityComponent>(entity, velocity);
 	em->addComponent<ColliderComponent>(entity, pos, size);
+	em->addComponent<TerrainColliderComponent>(entity, pos, size);
 }
 
 void EntityFactory::testEntity(int id)

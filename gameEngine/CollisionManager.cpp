@@ -23,10 +23,12 @@ void CollisionManager::collisionCheck()
 			if (collider1 != collider2) {
 				bool collisionDetected = Utils::isIn(*collider1, *collider2) ;
 				if (collisionDetected) {
-					std::cout << "Collision Detected\n"; // add event logic
+					continue;
+					//std::cout << "Collision Detected\n"; // add event logic
 				}
 				else if (!collisionDetected){
-					std::cout << "No Collision Detected\n";
+					continue;
+					//std::cout << "No Collision Detected\n";
 				}
 			}
 		}

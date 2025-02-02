@@ -12,6 +12,7 @@ void MovementManager::move(const Event& event)
 		auto velocityComponent = entityManager->getComponent<VelocityComponent>(entity);
 		auto transformComponent = entityManager->getComponent<TransformComponent>(entity);
 		auto colliderComponent = entityManager->getComponent<ColliderComponent>(entity);
+		auto terrainColliderComponent = entityManager->getComponent<TerrainColliderComponent>(entity);
 
 		if (event.type == eventType::keyPress) {
 
@@ -23,18 +24,22 @@ void MovementManager::move(const Event& event)
 			case sf::Keyboard::Key::W:
 				transformComponent->position = sf::Vector2f(currentPos.x, currentPos.y - velocityComponent->velocity.y);
 				colliderComponent->position = transformComponent->position;
+				terrainColliderComponent->position = transformComponent->position;
 				break;
 			case sf::Keyboard::Key::A:
 				transformComponent->position = sf::Vector2f(currentPos.x - velocityComponent->velocity.x, currentPos.y);
 				colliderComponent->position = transformComponent->position;
+				terrainColliderComponent->position = transformComponent->position;
 				break;
 			case sf::Keyboard::Key::S:
 				transformComponent->position = sf::Vector2f(currentPos.x, currentPos.y + velocityComponent->velocity.y);
 				colliderComponent->position = transformComponent->position;
+				terrainColliderComponent->position = transformComponent->position;
 				break;
 			case sf::Keyboard::Key::D:
 				transformComponent->position = sf::Vector2f(currentPos.x + velocityComponent->velocity.x, currentPos.y);
 				colliderComponent->position = transformComponent->position;
+				terrainColliderComponent->position = transformComponent->position;
 				break;
 			}
 		}
