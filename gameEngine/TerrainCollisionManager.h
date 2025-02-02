@@ -6,6 +6,7 @@
 
 #include "EventManager.h"
 #include "EntityManager.h"
+#include "TerrainManager.h"
 
 // Class declaration
 class TerrainCollisionManager {
@@ -13,10 +14,11 @@ private:
 
 	EventManager* eventManager;
 	EntityManager* entityManager;
+	TerrainManager* terrainManager;
 
 public:
 
-	TerrainCollisionManager(EventManager* eventManager, EntityManager* entityManager);
+	TerrainCollisionManager(EventManager* eventManager, EntityManager* entityManager, TerrainManager* terrainManager);
 
 	void terrainCollisionCheck();
 
