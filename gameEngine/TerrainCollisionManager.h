@@ -7,6 +7,7 @@
 #include "EventManager.h"
 #include "EntityManager.h"
 #include "TerrainManager.h"
+#include "Utils.h"
 
 // Class declaration
 class TerrainCollisionManager {

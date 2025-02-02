@@ -11,5 +11,23 @@ TerrainCollisionManager::TerrainCollisionManager(EventManager* eventManager,
 
 void TerrainCollisionManager::terrainCollisionCheck()
 {
-	
+	auto collidableEntities = entityManager->getEntitiesByComponent<ColliderComponent>();
+	auto regions = terrainManager->regions;
+
+	for (int i = 0; i < collidableEntities.size(); ++i) {
+		for (int k = i + 1; k < regions.size(); ++k) {
+			auto collider = entityManager->getComponent<TerrainColliderComponent>(collidableEntities[i]);
+			auto region = regions[k];
+
+
+			bool collisionDetected = Utils::isIn(*collider, region);
+			if (collisionDetected) {
+				std::cout << "Terrain Collision Detected\n"; // add event logic
+			}
+			else if (!collisionDetected) {
+				std::cout << "No Terrain Collision Detected\n";
+			}
+			
+		}
+	}
 }
