@@ -2,7 +2,7 @@
 #define Utils_H
 
 #include <iostream> 
-#include <vector>
+#include <array>
 
 #include "Component.h"
 #include "TerrainManager.h"
@@ -15,8 +15,8 @@ private:
 
 public:
 
-	static bool isIn(ColliderComponent& collider1, ColliderComponent& collider2);
-	static bool isIn(TerrainColliderComponent& collider, Region& region);
+	static std::array<bool, 2> isIn(ColliderComponent& collider1, ColliderComponent& collider2);
+	static std::array<bool, 2> isIn(TerrainColliderComponent& collider, Region& region);
 
 };
 
