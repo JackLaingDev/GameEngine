@@ -10,7 +10,7 @@ void EntityFactory::playerEntity(int id)
 	sf::RectangleShape rect;
 	sf::Vector2f pos(0, 0);
 	sf::Vector2f size(100, 100);
-	sf::Vector2f velocity(0.04, 0.04);
+	sf::Vector2f velocity(0, 0);
 
 	em->addComponent<TransformComponent>(entity, pos);
 	em->addComponent<RectangleComponent>(entity, rect, size, sf::Color::Green);
