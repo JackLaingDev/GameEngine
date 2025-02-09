@@ -20,7 +20,7 @@ void TerrainCollisionManager::terrainCollisionCheck()
         auto transform = entityManager->getComponent<TransformComponent>(entity);
 
         sf::FloatRect entityBounds(transform->position, collider->size);
-        bool collided = false;
+        bool collided = false;                                                    // collided flag to reset velocity
 
         for (auto& region : regions) {
             sf::FloatRect terrainBounds(region.pos, region.size);
@@ -28,6 +28,7 @@ void TerrainCollisionManager::terrainCollisionCheck()
             if (entityBounds.findIntersection(terrainBounds)) {
                 collided = true;
 
+                // Get terrain and entity sides
                 float entityLeft = entityBounds.position.x;
                 float entityRight = entityLeft + entityBounds.size.x;
                 float entityTop = entityBounds.position.y;
@@ -38,11 +39,13 @@ void TerrainCollisionManager::terrainCollisionCheck()
                 float terrainTop = terrainBounds.position.y;
                 float terrainBottom = terrainTop + terrainBounds.size.y;
 
+                // Calculate their overlaps
                 float overlapLeft = entityRight - terrainLeft;
                 float overlapRight = terrainRight - entityLeft;
                 float overlapTop = entityBottom - terrainTop;
                 float overlapBottom = terrainBottom - entityTop;
 
+                // Get collisions
                 bool collisionFromLeft = (overlapLeft < overlapRight) && (overlapLeft < overlapTop) && (overlapLeft < overlapBottom);
                 bool collisionFromRight = (overlapRight < overlapLeft) && (overlapRight < overlapTop) && (overlapRight < overlapBottom);
                 bool collisionFromTop = (overlapTop < overlapBottom) && (overlapTop < overlapLeft) && (overlapTop < overlapRight);
