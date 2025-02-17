@@ -1,6 +1,7 @@
 #include "InputManager.h"
 
-InputManager::InputManager(sf::Window* win, EventManager* em) : win(win), em(em)
+InputManager::InputManager(sf::Window* win, EventManager* eventManager, EntityManager* entityManager) 
+    : win(win), eventManager(eventManager), entityManager(entityManager)
 {
 }
 
