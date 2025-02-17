@@ -9,15 +9,14 @@ InputManager::InputManager(sf::Window* win, EventManager* eventManager, EntityMa
 void InputManager::update() {
 
     // Process events
-    std::optional<sf::Event> eventSF;
 
     auto player = entityManager->getEntitiesByComponent<PlayerComponent>()[0];
     auto playerVelocity = entityManager->getComponent<VelocityComponent>(player);
 
     keyPresses = {
-    {sf::Keyboard::Scancode::W, [this, playerVelocity]() {playerVelocity->velocity.y += this->speed; }},
+    {sf::Keyboard::Scancode::W, [this, playerVelocity]() {playerVelocity->velocity.y -= this->speed; }},
     {sf::Keyboard::Scancode::A, [this, playerVelocity]() {playerVelocity->velocity.x -= this->speed; }},
-    {sf::Keyboard::Scancode::S, [this, playerVelocity]() {playerVelocity->velocity.y -= this->speed; }},
+    {sf::Keyboard::Scancode::S, [this, playerVelocity]() {playerVelocity->velocity.y += this->speed; }},
     {sf::Keyboard::Scancode::D, [this, playerVelocity]() {playerVelocity->velocity.x += this->speed; }}
     };
 
@@ -28,7 +27,7 @@ void InputManager::update() {
     {sf::Keyboard::Scancode::D, [this, playerVelocity]() {playerVelocity->velocity.x = 0; }}
     };
 
-    while ((eventSF = win->pollEvent())) {
+    while (const std::optional eventSF = win->pollEvent()) {
         if (eventSF->is<sf::Event::KeyPressed>()) {
             const auto* keyPressed = eventSF->getIf<sf::Event::KeyPressed>();
             auto key = keyPressed->scancode;
@@ -47,6 +46,7 @@ void InputManager::update() {
                 it->second();  // Call the lambda function
             }
         }
+        
     }
 }
 

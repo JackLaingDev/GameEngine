@@ -18,7 +18,7 @@ private:
     std::unordered_map<sf::Keyboard::Scancode, std::function<void()>> keyPresses;
     std::unordered_map<sf::Keyboard::Scancode, std::function<void()>> keyReleases;
 
-    float speed = 0.03;
+    float speed = 40;
 
 public:
     InputManager(sf::Window* win, EventManager* eventManager, EntityManager* entityManager);

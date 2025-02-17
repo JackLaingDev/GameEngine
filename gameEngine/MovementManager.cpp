@@ -8,42 +8,13 @@ MovementManager::MovementManager(EntityManager* entityManager) : entityManager(e
 // Collider componenet should derive its position from the transofmr componenet within the collision system not here
 void MovementManager::update(float deltatime)
 {
-	const auto& entitiesToMove = entityManager->getEntitiesByComponent<PlayerComponent>();
+	auto entities = entityManager->getEntitiesByComponent<PlayerComponent>();
+	auto player = entities[0];
 
-	for (const auto& entity : entitiesToMove) {
-		auto velocityComponent = entityManager->getComponent<VelocityComponent>(entity);
-		auto transformComponent = entityManager->getComponent<TransformComponent>(entity);
-		auto colliderComponent = entityManager->getComponent<ColliderComponent>(entity);
-		auto terrainColliderComponent = entityManager->getComponent<TerrainColliderComponent>(entity);
+	auto velocityComponent = entityManager->getComponent<VelocityComponent>(player);
+	auto transformComponent = entityManager->getComponent<TransformComponent>(player);
 
-		if (event.type == eventType::keyPress) {
-
-			auto eventData = std::get<keyPressData>(event.data);
-			auto currentPos = transformComponent->position;
-
-			switch (eventData.key)
-			{
-			case sf::Keyboard::Key::W:
-				transformComponent->position = sf::Vector2f(currentPos.x, currentPos.y - velocityComponent->velocity.y);
-				colliderComponent->position = transformComponent->position;
-				terrainColliderComponent->position = transformComponent->position;
-				break;
-			case sf::Keyboard::Key::A:
-				transformComponent->position = sf::Vector2f(currentPos.x - velocityComponent->velocity.x, currentPos.y);
-				colliderComponent->position = transformComponent->position;
-				terrainColliderComponent->position = transformComponent->position;
-				break;
-			case sf::Keyboard::Key::S:
-				transformComponent->position = sf::Vector2f(currentPos.x, currentPos.y + velocityComponent->velocity.y);
-				colliderComponent->position = transformComponent->position;
-				terrainColliderComponent->position = transformComponent->position;
-				break;
-			case sf::Keyboard::Key::D:
-				transformComponent->position = sf::Vector2f(currentPos.x + velocityComponent->velocity.x, currentPos.y);
-				colliderComponent->position = transformComponent->position;
-				terrainColliderComponent->position = transformComponent->position;
-				break;
-			}
-		}
-	}
+	transformComponent->position.x += deltatime * velocityComponent->velocity.x;
+	transformComponent->position.y += deltatime * velocityComponent->velocity.y;
+	
 }
