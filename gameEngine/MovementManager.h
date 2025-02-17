@@ -16,7 +16,7 @@ public:
 
 	MovementManager(EntityManager* entityManager);
 
-	void update(const Event& event);
+	void update(float deltatime);
 
 };
 

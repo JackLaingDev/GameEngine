@@ -38,9 +38,6 @@ void GameLoop::run()
 	//terrainManager->addRegion(sf::Vector2f(700, 500), sf::Vector2f(100, 100), sf::Color::Blue);
 
 	// Subscribe Events
-	//eventManager->subscribe(eventType::keyPress, [&](const Event& event) {
-		//movementManager->move(event);
-		//});
 
 	// Game Loop
 	while (isRunning) {
@@ -49,6 +46,7 @@ void GameLoop::run()
 
 		// Game Loop logic goes here
 		inputManager->update();
+		movementManager->update(deltaTime);
 		//collisionManager->collisionCheck();
 		//terrainCollisionManager->terrainCollisionCheck();
 		//eventManager->publish();
