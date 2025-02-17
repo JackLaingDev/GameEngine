@@ -11,18 +11,21 @@ void InputManager::update() {
     // Process events
     std::optional<sf::Event> eventSF;
 
+    auto player = entityManager->getEntitiesByComponent<PlayerComponent>()[0];
+    auto playerVelocity = entityManager->getComponent<VelocityComponent>(player);
+
     keyPresses = {
-    {sf::Keyboard::Scancode::W, []() {std::cout << "W"; }},
-    {sf::Keyboard::Scancode::A, []() {std::cout << "A"; }},
-    {sf::Keyboard::Scancode::S, []() {std::cout << "S"; }},
-    {sf::Keyboard::Scancode::D, []() {std::cout << "D"; }}
+    {sf::Keyboard::Scancode::W, [this, playerVelocity]() {playerVelocity->velocity.y += this->speed; }},
+    {sf::Keyboard::Scancode::A, [this, playerVelocity]() {playerVelocity->velocity.x -= this->speed; }},
+    {sf::Keyboard::Scancode::S, [this, playerVelocity]() {playerVelocity->velocity.y -= this->speed; }},
+    {sf::Keyboard::Scancode::D, [this, playerVelocity]() {playerVelocity->velocity.x += this->speed; }}
     };
 
     keyReleases = {
-    {sf::Keyboard::Scancode::W, []() {std::cout << "Released W"; }},
-    {sf::Keyboard::Scancode::A, []() {std::cout << "Released A"; }},
-    {sf::Keyboard::Scancode::S, []() {std::cout << "Released S"; }},
-    {sf::Keyboard::Scancode::D, []() {std::cout << "Released D"; }}
+    {sf::Keyboard::Scancode::W, [this, playerVelocity]() {playerVelocity->velocity.x = 0; }},
+    {sf::Keyboard::Scancode::A, [this, playerVelocity]() {playerVelocity->velocity.x = 0; }},
+    {sf::Keyboard::Scancode::S, [this, playerVelocity]() {playerVelocity->velocity.x = 0; }},
+    {sf::Keyboard::Scancode::D, [this, playerVelocity]() {playerVelocity->velocity.x = 0; }}
     };
 
     while ((eventSF = win->pollEvent())) {
