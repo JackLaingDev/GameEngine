@@ -35,12 +35,12 @@ void GameLoop::run()
 	entityFactory->testEntity(2);
 
 	// Add Terrain
-	terrainManager->addRegion(sf::Vector2f(700, 500), sf::Vector2f(100, 100), sf::Color::Blue);
+	//terrainManager->addRegion(sf::Vector2f(700, 500), sf::Vector2f(100, 100), sf::Color::Blue);
 
 	// Subscribe Events
-	eventManager->subscribe(eventType::keyPress, [&](const Event& event) {
-		movementManager->move(event);
-		});
+	//eventManager->subscribe(eventType::keyPress, [&](const Event& event) {
+		//movementManager->move(event);
+		//});
 
 	// Game Loop
 	while (isRunning) {
@@ -51,8 +51,8 @@ void GameLoop::run()
 		inputManager->update();
 		//collisionManager->collisionCheck();
 		//terrainCollisionManager->terrainCollisionCheck();
-		eventManager->publish();
-		eventManager->events.clear();
+		//eventManager->publish();
+		//eventManager->events.clear();
 		renderManager->renderTerrain();
 		renderManager->renderEntities();
 

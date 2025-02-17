@@ -6,38 +6,43 @@ InputManager::InputManager(sf::Window* win, EventManager* em) : win(win), em(em)
 
 
 void InputManager::update() {
-    
-    // Keys to check
-    const std::vector<sf::Keyboard::Key> keysToCheck = {
-    sf::Keyboard::Key::W,
-    sf::Keyboard::Key::A,
-    sf::Keyboard::Key::S,
-    sf::Keyboard::Key::D,
-    sf::Keyboard::Key::Space,
-    sf::Keyboard::Key::Escape
-    };
-
-     // event type will always be keypress for input manager as its only looking for keypreses
 
     // Process events
-    const std::optional eventSF = win->pollEvent();
-    
-    // Check for Keypress
-        
+    std::optional<sf::Event> eventSF;
 
-    for (const auto& key : keysToCheck)
-    {
-        if (sf::Keyboard::isKeyPressed(key))
-        {
-            // Create and publish custom event
-            Event event;
-            event.type = eventType::keyPress;
-            event.data = keyPressData{ key };
+    keyPresses = {
+    {sf::Keyboard::Scancode::W, []() {std::cout << "W"; }},
+    {sf::Keyboard::Scancode::A, []() {std::cout << "A"; }},
+    {sf::Keyboard::Scancode::S, []() {std::cout << "S"; }},
+    {sf::Keyboard::Scancode::D, []() {std::cout << "D"; }}
+    };
 
-            em->events.push_back(event); // Publish the event to the EventManager
+    keyReleases = {
+    {sf::Keyboard::Scancode::W, []() {std::cout << "Released W"; }},
+    {sf::Keyboard::Scancode::A, []() {std::cout << "Released A"; }},
+    {sf::Keyboard::Scancode::S, []() {std::cout << "Released S"; }},
+    {sf::Keyboard::Scancode::D, []() {std::cout << "Released D"; }}
+    };
+
+    while ((eventSF = win->pollEvent())) {
+        if (eventSF->is<sf::Event::KeyPressed>()) {
+            const auto* keyPressed = eventSF->getIf<sf::Event::KeyPressed>();
+            auto key = keyPressed->scancode;
+
+            auto it = keyPresses.find(key);
+            if (it != keyPresses.end()) {
+                it->second();  // Call the lambda function
+            }
+        }
+        else if (eventSF->is<sf::Event::KeyReleased>()) {
+            const auto* keyReleased = eventSF->getIf<sf::Event::KeyReleased>();
+            auto key = keyReleased->scancode;
+
+            auto it = keyReleases.find(key);
+            if (it != keyReleases.end()) {
+                it->second();  // Call the lambda function
+            }
         }
     }
-        
-    
 }
 

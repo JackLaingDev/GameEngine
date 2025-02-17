@@ -13,6 +13,9 @@ private:
     sf::Window* win;
     EventManager* em;
 
+    std::unordered_map<sf::Keyboard::Scancode, std::function<void()>> keyPresses;
+    std::unordered_map<sf::Keyboard::Scancode, std::function<void()>> keyReleases;
+
 public:
     InputManager(sf::Window* win, EventManager* em);
     void update();
