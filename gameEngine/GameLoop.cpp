@@ -49,8 +49,8 @@ void GameLoop::run()
 
 		// Game Loop logic goes here
 		inputManager->update();
-		collisionManager->collisionCheck();
-		terrainCollisionManager->terrainCollisionCheck();
+		//collisionManager->collisionCheck();
+		//terrainCollisionManager->terrainCollisionCheck();
 		eventManager->publish();
 		eventManager->events.clear();
 		renderManager->renderTerrain();
