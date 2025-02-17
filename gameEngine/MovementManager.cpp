@@ -6,7 +6,7 @@ MovementManager::MovementManager(EntityManager* entityManager) : entityManager(e
 
 
 // Collider componenet should derive its position from the transofmr componenet within the collision system not here
-void MovementManager::move(const Event& event)
+void MovementManager::update(const Event& event)
 {
 	const auto& entitiesToMove = entityManager->getEntitiesByComponent<PlayerComponent>();
 
