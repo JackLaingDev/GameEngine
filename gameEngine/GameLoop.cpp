@@ -28,6 +28,8 @@ void GameLoop::run()
 	this->isRunning = true;
 	auto win = renderManager->getWindow();
 
+	sf::Clock clock;
+
 	// Initialise Entities
 	entityFactory->playerEntity(1);
 	entityFactory->testEntity(2);
@@ -42,6 +44,8 @@ void GameLoop::run()
 
 	// Game Loop
 	while (isRunning) {
+
+		float deltaTime = clock.restart().asSeconds();
 
 		// Game Loop logic goes here
 		inputManager->update();
