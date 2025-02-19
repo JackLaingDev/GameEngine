@@ -18,7 +18,7 @@ private:
     std::unordered_map<sf::Keyboard::Scancode, std::function<void()>> keyPresses;
     std::unordered_map<sf::Keyboard::Scancode, std::function<void()>> keyReleases;
 
-    float speed = 40;
+    float speed = 90;
 
     Entity player = Entity(0);
     VelocityComponent* playerVelocity = new VelocityComponent(sf::Vector2f(0, 0));

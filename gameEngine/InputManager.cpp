@@ -12,9 +12,9 @@ InputManager::InputManager(sf::Window* win, EventManager* eventManager, EntityMa
     };
 
     keyReleases = {
-    {sf::Keyboard::Scancode::W, [this]() {playerVelocity->velocity.x = 0; }},
+    {sf::Keyboard::Scancode::W, [this]() {playerVelocity->velocity.y = 0; }},
     {sf::Keyboard::Scancode::A, [this]() {playerVelocity->velocity.x = 0; }},
-    {sf::Keyboard::Scancode::S, [this]() {playerVelocity->velocity.x = 0; }},
+    {sf::Keyboard::Scancode::S, [this]() {playerVelocity->velocity.y = 0; }},
     {sf::Keyboard::Scancode::D, [this]() {playerVelocity->velocity.x = 0; }}
     };
 }
