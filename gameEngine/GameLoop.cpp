@@ -43,7 +43,13 @@ void GameLoop::run()
 	while (isRunning) {
 
 		float deltaTime = clock.restart().asSeconds();
-
+		// Check for exit
+		if (const std::optional eventSF = win->pollEvent()) {
+			if (eventSF->is<sf::Event::Closed>()) {
+				isRunning = false;
+				win->close();
+			}
+		}
 		// Game Loop logic goes here
 		inputManager->update();
 		movementManager->update(deltaTime);
@@ -55,12 +61,6 @@ void GameLoop::run()
 		renderManager->renderEntities();
 
 
-		// Check for exit
-		if (const std::optional eventSF = win->pollEvent()) {
-			if (eventSF->is<sf::Event::Closed>()) {
-				isRunning = false;
-				win->close();
-			}
-		}
+
 	}
 }

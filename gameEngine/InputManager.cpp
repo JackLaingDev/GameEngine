@@ -3,18 +3,11 @@
 InputManager::InputManager(sf::Window* win, EventManager* eventManager, EntityManager* entityManager) 
     : win(win), eventManager(eventManager), entityManager(entityManager)
 {
-    auto entities = entityManager->getEntitiesByComponent<PlayerComponent>();
-    
-    if (entities.size() != 0) {
-        player = entities[0];
-        playerVelocity = entityManager->getComponent<VelocityComponent>(player);
-    }
-
     keyPresses = {
-    {sf::Keyboard::Scancode::W, [this]() {playerVelocity->velocity.y -= this->speed; }},
-    {sf::Keyboard::Scancode::A, [this]() {playerVelocity->velocity.x -= this->speed; }},
-    {sf::Keyboard::Scancode::S, [this]() {playerVelocity->velocity.y += this->speed; }},
-    {sf::Keyboard::Scancode::D, [this]() {playerVelocity->velocity.x += this->speed; }}
+    {sf::Keyboard::Scancode::W, [this]() {this->playerVelocity->velocity.y -= this->speed; }},
+    {sf::Keyboard::Scancode::A, [this]() {this->playerVelocity->velocity.x -= this->speed; }},
+    {sf::Keyboard::Scancode::S, [this]() {this->playerVelocity->velocity.y += this->speed; }},
+    {sf::Keyboard::Scancode::D, [this]() {this->playerVelocity->velocity.x += this->speed; }}
     };
 
     keyReleases = {
@@ -29,6 +22,13 @@ InputManager::InputManager(sf::Window* win, EventManager* eventManager, EntityMa
 void InputManager::update() {
 
     // Process events
+    auto entities = entityManager->getEntitiesByComponent<PlayerComponent>();
+
+    if (entities.size() != 0) {
+        player = entities[0];
+        playerVelocity = entityManager->getComponent<VelocityComponent>(player);
+    }
+
     while (const std::optional eventSF = win->pollEvent()) {
         if (eventSF->is<sf::Event::KeyPressed>()) {
             const auto* keyPressed = eventSF->getIf<sf::Event::KeyPressed>();
