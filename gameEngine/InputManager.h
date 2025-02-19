@@ -20,6 +20,9 @@ private:
 
     float speed = 40;
 
+    Entity player = Entity(0);
+    VelocityComponent* playerVelocity = new VelocityComponent(sf::Vector2f(0, 0));
+
 public:
     InputManager(sf::Window* win, EventManager* eventManager, EntityManager* entityManager);
     void update();

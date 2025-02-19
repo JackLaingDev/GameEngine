@@ -55,5 +55,12 @@ void GameLoop::run()
 		renderManager->renderEntities();
 
 
+		// Check for exit
+		if (const std::optional eventSF = win->pollEvent()) {
+			if (eventSF->is<sf::Event::Closed>()) {
+				isRunning = false;
+				win->close();
+			}
+		}
 	}
 }
