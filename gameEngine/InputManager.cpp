@@ -7,7 +7,8 @@ InputManager::InputManager(sf::Window* win, EventManager* eventManager, EntityMa
     {sf::Keyboard::Scancode::W, [this]() {this->playerVelocity->velocity.y -= this->speed; }},
     {sf::Keyboard::Scancode::A, [this]() {this->playerVelocity->velocity.x -= this->speed; }},
     {sf::Keyboard::Scancode::S, [this]() {this->playerVelocity->velocity.y += this->speed; }},
-    {sf::Keyboard::Scancode::D, [this]() {this->playerVelocity->velocity.x += this->speed; }}
+    {sf::Keyboard::Scancode::D, [this]() {this->playerVelocity->velocity.x += this->speed; }},
+    {sf::Keyboard::Scancode::Escape, [this]() {this->win->close(); }}
     };
 
     keyReleases = {
@@ -39,7 +40,7 @@ void InputManager::update() {
                 it->second();  // Call the lambda function
             }
         }
-        else if (eventSF->is<sf::Event::KeyReleased>()) {
+        if (eventSF->is<sf::Event::KeyReleased>()) {
             const auto* keyReleased = eventSF->getIf<sf::Event::KeyReleased>();
             auto key = keyReleased->scancode;
 
@@ -48,7 +49,6 @@ void InputManager::update() {
                 it->second();  // Call the lambda function
             }
         }
-        
     }
 }
 
