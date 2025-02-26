@@ -1,7 +1,7 @@
 #ifndef MovementManager_H 
 #define MovementManager_H
 
-#include <iostream> 
+#include <iostream>
 
 #include "EntityManager.h"
 #include "EventManager.h"

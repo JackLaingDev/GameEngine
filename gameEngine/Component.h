@@ -33,6 +33,8 @@ private:
 
 public:
 	sf::Vector2f velocity; // x and y velocities
+	sf::Vector2f maxVelocity = sf::Vector2f(90, 90);
+	sf::Vector2f minVelocity = sf::Vector2f(-90, -90);
 
 	VelocityComponent(sf::Vector2f velocity);
 
