@@ -19,7 +19,6 @@ InputManager::InputManager(sf::Window* win, EventManager* eventManager, EntityMa
     };
 }
 
-
 void InputManager::update() {
 
     // Process events
@@ -31,23 +30,28 @@ void InputManager::update() {
     }
 
     while (const std::optional eventSF = win->pollEvent()) {
-        if (eventSF->is<sf::Event::KeyPressed>()) {
-            const auto* keyPressed = eventSF->getIf<sf::Event::KeyPressed>();
-            auto key = keyPressed->scancode;
+        processKeys(eventSF);
+    }
+}
 
-            auto it = keyPresses.find(key);
-            if (it != keyPresses.end()) {
-                it->second();  // Call the lambda function
-            }
+void InputManager::processKeys(const std::optional<sf::Event> eventSF)
+{
+    if (eventSF->is<sf::Event::KeyPressed>()) {
+        const auto* keyPressed = eventSF->getIf<sf::Event::KeyPressed>();
+        auto key = keyPressed->scancode;
+
+        auto it = keyPresses.find(key);
+        if (it != keyPresses.end()) {
+            it->second();  // Call the lambda function
         }
-        if (eventSF->is<sf::Event::KeyReleased>()) {
-            const auto* keyReleased = eventSF->getIf<sf::Event::KeyReleased>();
-            auto key = keyReleased->scancode;
+    }
+    if (eventSF->is<sf::Event::KeyReleased>()) {
+        const auto* keyReleased = eventSF->getIf<sf::Event::KeyReleased>();
+        auto key = keyReleased->scancode;
 
-            auto it = keyReleases.find(key);
-            if (it != keyReleases.end()) {
-                it->second();  // Call the lambda function
-            }
+        auto it = keyReleases.find(key);
+        if (it != keyReleases.end()) {
+            it->second();  // Call the lambda function
         }
     }
 }

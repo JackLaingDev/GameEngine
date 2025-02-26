@@ -26,6 +26,7 @@ private:
 public:
     InputManager(sf::Window* win, EventManager* eventManager, EntityManager* entityManager);
     void update();
+    void processKeys(const std::optional<sf::Event> eventSF);
 };
 
 #endif
