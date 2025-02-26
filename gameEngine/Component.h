@@ -65,11 +65,8 @@ class TerrainColliderComponent : public Component {
 private:
 
 public:
-	
-	sf::Vector2f position;
-	sf::Vector2f size;
 
-	TerrainColliderComponent(sf::Vector2f position, sf::Vector2f size);
+	TerrainColliderComponent();
 
 };
 

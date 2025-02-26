@@ -21,8 +21,6 @@ void CollisionManager::collisionCheck()
 			auto transform1 = entityManager->getComponent<TransformComponent>(collidableEntities[i]);
 			auto transform2 = entityManager->getComponent<TransformComponent>(collidableEntities[k]);
 
-            
-
             sf::FloatRect collider1Bounds(transform1->position, transform1->size);
             sf::FloatRect collider2Bounds(transform2->position, transform2->size);
 

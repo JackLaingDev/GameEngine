@@ -11,15 +11,14 @@ TerrainCollisionManager::TerrainCollisionManager(EventManager* eventManager,
 
 void TerrainCollisionManager::terrainCollisionCheck()
 {
-    auto collidableEntities = entityManager->getEntitiesByComponent<TerrainColliderComponent>();
+    auto terrainCollidableEntities = entityManager->getEntitiesByComponent<TerrainColliderComponent>();
     auto regions = terrainManager->regions;
 
-    for (auto entity : collidableEntities) {
-        auto collider = entityManager->getComponent<TerrainColliderComponent>(entity);
+    for (auto entity : terrainCollidableEntities) {
         auto velocity = entityManager->getComponent<VelocityComponent>(entity);
         auto transform = entityManager->getComponent<TransformComponent>(entity);
 
-        sf::FloatRect entityBounds(transform->position, collider->size);
+        sf::FloatRect entityBounds(transform->position, transform->size);
         bool collided = false;                                                    // collided flag to reset velocity
 
         for (auto& region : regions) {

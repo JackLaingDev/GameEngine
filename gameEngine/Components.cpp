@@ -16,7 +16,7 @@ TransformComponent::TransformComponent(sf::Vector2f position, sf::Vector2f size)
 
 ColliderComponent::ColliderComponent(){};
 
-TerrainColliderComponent::TerrainColliderComponent(sf::Vector2f position, sf::Vector2f size) : position(position) {};
+TerrainColliderComponent::TerrainColliderComponent() {};
 
 PlayerComponent::PlayerComponent(int playerId) : playerId(playerId) {};
 
