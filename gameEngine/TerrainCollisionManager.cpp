@@ -71,8 +71,7 @@ void TerrainCollisionManager::terrainCollisionCheck()
             }
         }
         if (!collided) {
-            velocity->velocity.x = 0.03f;
-            velocity->velocity.y = 0.03f;
+
         }
     }
 }

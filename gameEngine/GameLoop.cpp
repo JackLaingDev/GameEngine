@@ -48,7 +48,7 @@ void GameLoop::run()
 		inputManager->update();
 		movementManager->update(deltaTime);
 		collisionManager->collisionCheck();
-		//terrainCollisionManager->terrainCollisionCheck();
+		terrainCollisionManager->terrainCollisionCheck();
 		//eventManager->publish();
 		//eventManager->events.clear();
 		renderManager->renderTerrain();
