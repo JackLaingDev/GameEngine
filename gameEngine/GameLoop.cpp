@@ -35,7 +35,7 @@ void GameLoop::run()
 	entityFactory->testEntity(2);
 
 	// Add Terrain
-	//terrainManager->addRegion(sf::Vector2f(700, 500), sf::Vector2f(100, 100), sf::Color::Blue);
+	terrainManager->addRegion(sf::Vector2f(700, 500), sf::Vector2f(100, 100), sf::Color::Blue);
 
 	// Subscribe Events
 
@@ -47,7 +47,7 @@ void GameLoop::run()
 		// Game Loop logic goes here
 		inputManager->update();
 		movementManager->update(deltaTime);
-		//collisionManager->collisionCheck();
+		collisionManager->collisionCheck();
 		//terrainCollisionManager->terrainCollisionCheck();
 		//eventManager->publish();
 		//eventManager->events.clear();

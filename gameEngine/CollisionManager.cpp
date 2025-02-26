@@ -18,11 +18,13 @@ void CollisionManager::collisionCheck()
 	}
 	for (int i = 0; i < collidableEntities.size(); ++i) {
 		for (int k = i+1; k < collidableEntities.size(); ++k) {
-			auto collider1 = entityManager->getComponent<ColliderComponent>(collidableEntities[i]);
-			auto collider2 = entityManager->getComponent<ColliderComponent>(collidableEntities[k]);
+			auto transform1 = entityManager->getComponent<TransformComponent>(collidableEntities[i]);
+			auto transform2 = entityManager->getComponent<TransformComponent>(collidableEntities[k]);
 
-            sf::FloatRect collider1Bounds(collider1->position, collider1->size);
-            sf::FloatRect collider2Bounds(collider2->position, collider2->size);
+            
+
+            sf::FloatRect collider1Bounds(transform1->position, transform1->size);
+            sf::FloatRect collider2Bounds(transform2->position, transform2->size);
 
             if (collider1Bounds.findIntersection(collider2Bounds)) {
                 collided = true;

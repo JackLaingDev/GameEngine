@@ -42,10 +42,12 @@ public:
 class TransformComponent : public Component {
 public:
 	sf::Vector2f position;
-	float rotation; // In degrees (SFML uses degrees)
 	sf::Vector2f scale;
+	sf::Vector2f size;
 
-	TransformComponent(sf::Vector2f position);
+	float rotation; // In degrees (SFML uses degrees)
+
+	TransformComponent(sf::Vector2f position, sf::Vector2f size);
 };
 
 //
@@ -53,10 +55,8 @@ class ColliderComponent : public Component {
 private:
 
 public:
-	sf::Vector2f position;
-	sf::Vector2f size;
 
-	ColliderComponent(sf::Vector2f position, sf::Vector2f size);
+	ColliderComponent();
 
 };
 
