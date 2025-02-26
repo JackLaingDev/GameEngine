@@ -35,7 +35,7 @@ void GameLoop::run()
 	entityFactory->testEntity(2);
 
 	// Add Terrain
-	terrainManager->addRegion(sf::Vector2f(700, 500), sf::Vector2f(100, 100), sf::Color::Blue);
+	terrainManager->addRegion(sf::Vector2f(0, 600), sf::Vector2f(1700, 100), sf::Color::Blue);
 
 	// Subscribe Events
 
