@@ -2,6 +2,7 @@
 #define InputManager_H
 
 #include <iostream> 
+#include <unordered_set>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
@@ -15,8 +16,7 @@ private:
     EventManager* eventManager;
     EntityManager* entityManager;
 
-    std::unordered_map<sf::Keyboard::Scancode, std::function<void()>> keyPresses;
-    std::unordered_map<sf::Keyboard::Scancode, std::function<void()>> keyReleases;
+    std::unordered_set<sf::Keyboard::Scancode> heldKeys;
 
     float speed = 90;
 
