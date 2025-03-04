@@ -12,21 +12,25 @@
 // Class declaration
 class InputManager {
 private:
+
     sf::Window* win;
     EventManager* eventManager;
     EntityManager* entityManager;
 
     std::unordered_set<sf::Keyboard::Scancode> heldKeys;
 
-    float speed = 90;
-
     Entity player = Entity(0);
     VelocityComponent* playerVelocity = new VelocityComponent(sf::Vector2f(0, 0));
 
+    float speed = 90;
+
 public:
+
     InputManager(sf::Window* win, EventManager* eventManager, EntityManager* entityManager);
+
     void update();
-    void processKeys(const std::optional<sf::Event> eventSF);
+    void processKeyEvents(const std::optional<sf::Event> eventSF);
+    void processHeldKeys(VelocityComponent* playerVelocity);
 };
 
 #endif

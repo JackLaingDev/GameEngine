@@ -17,11 +17,13 @@ void InputManager::update() {
     }
 
     while (const std::optional eventSF = win->pollEvent()) {
-        processKeys(eventSF);
+        processKeyEvents(eventSF);
     }
+
+    processHeldKeys(playerVelocity);
 }
 
-void InputManager::processKeys(const std::optional<sf::Event> eventSF)
+void InputManager::processKeyEvents(const std::optional<sf::Event> eventSF)
 {
     if (eventSF->is<sf::Event::KeyPressed>()) {
         const auto* keyPressed = eventSF->getIf<sf::Event::KeyPressed>();
@@ -34,6 +36,25 @@ void InputManager::processKeys(const std::optional<sf::Event> eventSF)
         auto key = keyReleased->scancode;
 
         heldKeys.erase(key);
+    }
+}
+
+void InputManager::processHeldKeys(VelocityComponent* playerVelocity)
+{
+    if (heldKeys.find(sf::Keyboard::Scancode::W) != heldKeys.end()) {
+        playerVelocity->velocity.y -= speed;
+    }
+    if (heldKeys.find(sf::Keyboard::Scancode::A) != heldKeys.end()) {
+        playerVelocity->velocity.x -= speed;
+    }
+    if (heldKeys.find(sf::Keyboard::Scancode::S) != heldKeys.end()) {
+        playerVelocity->velocity.y += speed;
+    }
+    if (heldKeys.find(sf::Keyboard::Scancode::D) != heldKeys.end()) {
+        playerVelocity->velocity.x += speed;
+    }
+    if (heldKeys.find(sf::Keyboard::Scancode::Escape) != heldKeys.end()) {
+        win->close();
     }
 }
 
