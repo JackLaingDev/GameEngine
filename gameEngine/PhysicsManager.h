@@ -3,6 +3,8 @@
 
 #include <iostream> 
 
+#include "EntityManager.h"
+
 // Class declaration
 class PhysicsManager {
 private:
@@ -10,6 +12,9 @@ private:
 
 public:
 
+    PhysicsManager(EntityManager* entityManager);
+
+    void update(float deltatime);
 
 };
 
