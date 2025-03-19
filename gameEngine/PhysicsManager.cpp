@@ -1,15 +1,20 @@
 #include "PhysicsManager.h"
 
-PhysicsManager::PhysicsManager(EntityManager* entityManager) : entityManager(entityManager)
+PhysicsManager::PhysicsManager(EntityManager* entityManager) : entityManager(entityManager), gravity(sf::Vector2f(0, 90))
 {
 
 }
 
 void PhysicsManager::update(float deltatime)
 {
-	auto entities = entityManager->getEntitiesByComponent<PlayerComponent>();
-	auto player = entities[0];
+	auto physicsEntities = entityManager->getEntitiesByComponent<PhysicsComponent>();
+	
+	for (auto entity : physicsEntities) {
 
-	auto velocityComponent = entityManager->getComponent<VelocityComponent>(player);
-	auto transformComponent = entityManager->getComponent<TransformComponent>(player);
+
+
+		auto velocityComponent = entityManager->getComponent<VelocityComponent>(entity);
+		auto transformComponent = entityManager->getComponent<TransformComponent>(entity);
+	}
+
 }

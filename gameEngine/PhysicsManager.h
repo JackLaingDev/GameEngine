@@ -10,6 +10,7 @@ class PhysicsManager {
 private:
     
     EntityManager* entityManager;
+    sf::Vector2f gravity;
 
 public:
 
