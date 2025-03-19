@@ -10,11 +10,9 @@ void PhysicsManager::update(float deltatime)
 	auto physicsEntities = entityManager->getEntitiesByComponent<PhysicsComponent>();
 	
 	for (auto entity : physicsEntities) {
-
-
-
 		auto velocityComponent = entityManager->getComponent<VelocityComponent>(entity);
-		auto transformComponent = entityManager->getComponent<TransformComponent>(entity);
+
+		velocityComponent->velocity += gravity;
 	}
 
 }

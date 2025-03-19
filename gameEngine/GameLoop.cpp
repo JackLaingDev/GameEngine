@@ -48,6 +48,7 @@ void GameLoop::run()
 
 		// Game Loop logic goes here
 		inputManager->update();
+		physicsManager->update(deltaTime);
 		movementManager->update(deltaTime);
 		collisionManager->collisionCheck();
 		terrainCollisionManager->terrainCollisionCheck();
