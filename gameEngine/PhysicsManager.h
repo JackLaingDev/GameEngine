@@ -9,6 +9,7 @@
 class PhysicsManager {
 private:
     
+    EntityManager* entityManager;
 
 public:
 
