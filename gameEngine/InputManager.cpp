@@ -41,41 +41,31 @@ void InputManager::processKeyEvents(const std::optional<sf::Event> eventSF)
 
 void InputManager::processHeldKeys(VelocityComponent* playerVelocity)
 {
-    // W
+
+    sf::Vector2f newVelocity(0.f, 0.f);
+
+    // Vertical Movement
     if (heldKeys.find(sf::Keyboard::Scancode::W) != heldKeys.end()) {
-        playerVelocity->velocity.y -= speed;
+        newVelocity.y -= speed;
     }
-    else if (heldKeys.find(sf::Keyboard::Scancode::W) == heldKeys.end() && heldKeys.find(sf::Keyboard::Scancode::S) == heldKeys.end()) {
-        playerVelocity->velocity.y = 0;
-    }
-
-    // A
-    if (heldKeys.find(sf::Keyboard::Scancode::A) != heldKeys.end()) {
-        playerVelocity->velocity.x -= speed;
-    }
-    else if (heldKeys.find(sf::Keyboard::Scancode::A) == heldKeys.end() && heldKeys.find(sf::Keyboard::Scancode::D) == heldKeys.end()) {
-        playerVelocity->velocity.x = 0;
-    }
-
-    // S
     if (heldKeys.find(sf::Keyboard::Scancode::S) != heldKeys.end()) {
-        playerVelocity->velocity.y += speed;
-    }
-    else if (heldKeys.find(sf::Keyboard::Scancode::W) == heldKeys.end() && heldKeys.find(sf::Keyboard::Scancode::S) == heldKeys.end()) {
-        playerVelocity->velocity.y = 0;
+        newVelocity.y += speed;
     }
 
-    // D
+    // Horizontal Movement
+    if (heldKeys.find(sf::Keyboard::Scancode::A) != heldKeys.end()) {
+        newVelocity.x -= speed;
+    }
     if (heldKeys.find(sf::Keyboard::Scancode::D) != heldKeys.end()) {
-        playerVelocity->velocity.x += speed;
-    }
-    else if (heldKeys.find(sf::Keyboard::Scancode::A) == heldKeys.end() && heldKeys.find(sf::Keyboard::Scancode::D) == heldKeys.end()) {
-        playerVelocity->velocity.x = 0;
+        newVelocity.x += speed;
     }
 
-    // Escape
+    playerVelocity->velocity = newVelocity;
+
+    // Escape handling
     if (heldKeys.find(sf::Keyboard::Scancode::Escape) != heldKeys.end()) {
         win->close();
     }
+
 }
 
