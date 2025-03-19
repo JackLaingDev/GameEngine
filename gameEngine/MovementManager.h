@@ -2,6 +2,7 @@
 #define MovementManager_H
 
 #include <iostream>
+#include <algorithm>
 
 #include "EntityManager.h"
 #include "EventManager.h"
