@@ -10,15 +10,18 @@ HealthComponent::HealthComponent(int health) : health(health) {};
 
 VelocityComponent::VelocityComponent(sf::Vector2f velocity) : velocity(velocity) {};
 
-TransformComponent::TransformComponent(sf::Vector2f position, sf::Vector2f size) : position(position),
-																				   rotation(0.0f), scale(1.0f, 1.0f), 
-																				   size(size) {};
+PhysicsComponent::PhysicsComponent() {};
 
 ColliderComponent::ColliderComponent(){};
 
 TerrainColliderComponent::TerrainColliderComponent() {};
 
 PlayerComponent::PlayerComponent(int playerId) : playerId(playerId) {};
+
+TransformComponent::TransformComponent(sf::Vector2f position, sf::Vector2f size) : position(position),
+rotation(0.0f), scale(1.0f, 1.0f),
+size(size) {
+};
 
 RectangleComponent::RectangleComponent(sf::RectangleShape rectangle, sf::Vector2f size, sf::Color colour)
 	: rectangle(rectangle), size(size), colour(colour) 

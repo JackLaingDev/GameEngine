@@ -62,6 +62,15 @@ public:
 
 };
 
+// Flag to Indicate the entity is affected by physics
+class PhysicsComponent : public Component {
+private:
+
+public:
+
+	PhysicsComponent();
+};
+
 //
 class TerrainColliderComponent : public Component {
 private:
