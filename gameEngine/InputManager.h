@@ -3,6 +3,7 @@
 
 #include <iostream> 
 #include <unordered_set>
+#include <algorithm>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 

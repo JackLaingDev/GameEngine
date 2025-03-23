@@ -33,5 +33,6 @@ void EntityFactory::testEntity(int id)
 	em->addComponent<RectangleComponent>(entity, rect, size, sf::Color::Red);
 	em->addComponent<VelocityComponent>(entity, velocity);
 	em->addComponent<ColliderComponent>(entity);
+	em->addComponent<TerrainColliderComponent>(entity);
 	em->addComponent<PhysicsComponent>(entity);
 }
