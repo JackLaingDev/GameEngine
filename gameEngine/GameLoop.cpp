@@ -47,8 +47,8 @@ void GameLoop::run()
 		float deltaTime = clock.restart().asSeconds();
 
 		// Game Loop logic goes here
-		inputManager->update();
 		physicsManager->update(deltaTime);
+		inputManager->update();
 		movementManager->update(deltaTime);
 		collisionManager->collisionCheck();
 		terrainCollisionManager->terrainCollisionCheck();

@@ -42,25 +42,23 @@ void InputManager::processKeyEvents(const std::optional<sf::Event> eventSF)
 void InputManager::processHeldKeys(VelocityComponent* playerVelocity)
 {
 
-    sf::Vector2f newVelocity(0.f, 0.f);
+    playerVelocity->velocity.x = 0.f;
 
     // Vertical Movement
-    if (heldKeys.find(sf::Keyboard::Scancode::W) != heldKeys.end()) {
-        newVelocity.y -= speed;
-    }
+    // W NEEDS TO BE ADDED AS A JUMP.
     if (heldKeys.find(sf::Keyboard::Scancode::S) != heldKeys.end()) {
-        newVelocity.y += speed;
+        playerVelocity->velocity.y += speed;
     }
 
     // Horizontal Movement
     if (heldKeys.find(sf::Keyboard::Scancode::A) != heldKeys.end()) {
-        newVelocity.x -= speed;
+        playerVelocity->velocity.x -= speed;
     }
     if (heldKeys.find(sf::Keyboard::Scancode::D) != heldKeys.end()) {
-        newVelocity.x += speed;
+        playerVelocity->velocity.x += speed;
     }
 
-    playerVelocity->velocity += newVelocity;
+
 
     // Escape handling
     if (heldKeys.find(sf::Keyboard::Scancode::Escape) != heldKeys.end()) {
