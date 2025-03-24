@@ -8,7 +8,7 @@ void EventManager::subscribe(eventType type, std::function<void(const Event&)> c
     customSubscribers[type].push_back(callback);
 }
 
-void EventManager::subscribe(sf::Event type, std::function<void(const Event&)> callback)
+void EventManager::subscribe(sf::Event type, std::function<void(const sf::Event&)> callback)
 {
     SFMLSubscribers[type].push_back(callback);
 }
@@ -29,9 +29,9 @@ void EventManager::publish() {
     }
     for (auto& event : SFMLEvents) {
         // Check if there are subscribers for the event's type
-        if (SFMLSubscribers.find(event.type) != SFMLSubscribers.end()) {
+        if (SFMLSubscribers.find(event) != SFMLSubscribers.end()) {
             // Invoke each callback with the event
-            for (auto& callback : SFMLSubscribers[event.type]) {
+            for (auto& callback : SFMLSubscribers[event]) {
                 callback(event);
             }
         }
