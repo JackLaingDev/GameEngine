@@ -23,7 +23,7 @@ private:
     Entity player = Entity(0);
     VelocityComponent* playerVelocity = new VelocityComponent(sf::Vector2f(0, 0));
 
-    float speed = 90;
+    float speed = 200;
 
 public:
 

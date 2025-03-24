@@ -38,6 +38,8 @@ void GameLoop::run()
 
 	// Add Terrain
 	terrainManager->addRegion(sf::Vector2f(0, 600), sf::Vector2f(1700, 100), sf::Color::Blue);
+	terrainManager->addRegion(sf::Vector2f(0, 300), sf::Vector2f(300, 50), sf::Color::Blue);
+	terrainManager->addRegion(sf::Vector2f(1300, 300), sf::Vector2f(300, 50), sf::Color::Blue);
 
 	// Subscribe Events
 

@@ -1,18 +1,37 @@
 #include "EventManager.h"
 
-// std::function<void(const Event&)> can accept and store any function returning void with params: const Event& 
+/*
+Subscribe functions to events in gameloop, when an event is published it will call the corresponding function.
+*/
 void EventManager::subscribe(eventType type, std::function<void(const Event&)> callback) {
     // Add the callback to the list of subscribers for the given event type
-    subscribers[type].push_back(callback);
+    customSubscribers[type].push_back(callback);
 }
 
+void EventManager::subscribe(sf::Event type, std::function<void(const Event&)> callback)
+{
+    SFMLSubscribers[type].push_back(callback);
+}
+
+/*
+Iterates through both custom and SFML event queues, calls their corresponding functions
+*/
 void EventManager::publish() {
 
-    for (auto& event : events) {
+    for (auto& event : customEvents) {
         // Check if there are subscribers for the event's type
-        if (subscribers.find(event.type) != subscribers.end()) {
+        if (customSubscribers.find(event.type) != customSubscribers.end()) {
             // Invoke each callback with the event
-            for (auto& callback : subscribers[event.type]) {
+            for (auto& callback : customSubscribers[event.type]) {
+                callback(event);
+            }
+        }
+    }
+    for (auto& event : SFMLEvents) {
+        // Check if there are subscribers for the event's type
+        if (SFMLSubscribers.find(event.type) != SFMLSubscribers.end()) {
+            // Invoke each callback with the event
+            for (auto& callback : SFMLSubscribers[event.type]) {
                 callback(event);
             }
         }

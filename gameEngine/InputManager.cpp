@@ -58,8 +58,6 @@ void InputManager::processHeldKeys(VelocityComponent* playerVelocity)
         playerVelocity->velocity.x += speed;
     }
 
-
-
     // Escape handling
     if (heldKeys.find(sf::Keyboard::Scancode::Escape) != heldKeys.end()) {
         win->close();

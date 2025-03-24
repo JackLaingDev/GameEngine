@@ -10,14 +10,18 @@
 class EventManager {
 private:
     // Map event types to a list of callbacks (subscribers)
-    std::unordered_map<eventType, std::vector<std::function<void(const Event&)>>> subscribers;
-    
+    std::unordered_map<eventType, std::vector<std::function<void(const Event&)>>> customSubscribers;
+    std::unordered_map<sf::Event, std::vector<std::function<void(const Event&)>>> SFMLSubscribers;
 
 public:
 
-    std::vector<Event> events;
+    // Event queues
+    std::vector<Event> customEvents;
+    std::vector<Event> SFMLEvents;
+
     // Subscribe a callback to an event type
     void subscribe(eventType type, std::function<void(const Event&)> callback);
+    void subscribe(sf::Event type, std::function<void(const Event&)> callback);
 
     // Publish an event, invoking all callbacks for its type
     void publish();
