@@ -17,7 +17,7 @@ public:
 
     // Event queues
     std::vector<Event> customEvents;
-    std::vector<Event> SFMLEvents;
+    std::vector<sf::Event> SFMLEvents;
 
     // Subscribe a callback to an event type
     void subscribe(eventType type, std::function<void(const Event&)> callback);
