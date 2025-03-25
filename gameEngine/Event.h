@@ -30,7 +30,7 @@ struct takeDamageData
 
 struct collisionData
 {
-
+	
 };
 
 struct terrainCollisionData

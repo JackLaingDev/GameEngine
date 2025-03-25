@@ -50,6 +50,10 @@ void GameLoop::run()
 		inputManager->processKeyReleases(event);
 		});
 
+	eventManager->subscribe(eventType::collisionDetected, [](const Event& event) {
+		std::cout << "custom event queue test";
+		});
+
 	// Game Loop
 	while (isRunning) {
 

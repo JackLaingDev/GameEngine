@@ -51,7 +51,9 @@ void CollisionManager::collisionCheck()
                 bool collisionFromBottom = (overlapBottom < overlapTop) && (overlapBottom < overlapLeft) && (overlapBottom < overlapRight);
 
                 if (collisionFromLeft) {
-                    std::cout << "Collision from left";
+                    Event collisionEvent;
+                    collisionEvent.type = eventType::collisionDetected;
+                    eventManager->enqueue(collisionEvent);
                 }
                 else if (collisionFromRight) {
                     std::cout << "Collision from right";
