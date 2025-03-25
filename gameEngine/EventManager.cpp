@@ -6,10 +6,12 @@ EventManager::EventManager(sf::Window* win) : win(win)
 
 void EventManager::enqueue(const Event& customEvent)
 {
+    customEvents.push_back(customEvent);
 }
 
 void EventManager::enqueue(const sf::Event& sfmlEvent)
 {
+    SFMLEvents.push_back(sfmlEvent);
 }
 
 void EventManager::pollSFMLEvents()
