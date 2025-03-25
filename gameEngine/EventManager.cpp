@@ -1,5 +1,24 @@
 #include "EventManager.h"
 
+EventManager::EventManager(sf::Window* win) : win(win)
+{
+}
+
+void EventManager::enqueue(const Event& customEvent)
+{
+}
+
+void EventManager::enqueue(const sf::Event& sfmlEvent)
+{
+}
+
+void EventManager::pollSFMLEvents()
+{
+    while (const std::optional eventSF = win->pollEvent()) {
+        SFMLEvents.push_back(eventSF);
+    }
+}
+
 /*
 Subscribe functions to events in gameloop, when an event is published it will call the corresponding function.
 */

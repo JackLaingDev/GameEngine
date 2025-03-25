@@ -12,12 +12,21 @@ private:
     // Map event types to a list of callbacks (subscribers)
     std::unordered_map<eventType, std::vector<std::function<void(const Event&)>>> customSubscribers;
     std::unordered_map<sf::Event, std::vector<std::function<void(const sf::Event&)>>> SFMLSubscribers;
-
-public:
+    sf::Window* win;
 
     // Event queues
     std::vector<Event> customEvents;
     std::vector<sf::Event> SFMLEvents;
+
+public:
+
+    EventManager(sf::Window* win);
+
+    void enqueue(const Event& customEvent);
+    void enqueue(const sf::Event& sfmlEvent);
+
+    // Func to poll SFML events
+    void pollSFMLEvents();
 
     // Subscribe a callback to an event type
     void subscribe(eventType type, std::function<void(const Event&)> callback);
