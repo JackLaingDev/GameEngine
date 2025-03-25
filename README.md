@@ -1,86 +1,96 @@
 # Event-Driven Entity-Component-System (ECS) Game Engine
 
-This project is an event-driven game engine built using the Entity-Component-System (ECS) architecture in C++. It demonstrates a comprehensive understanding of ECS patterns, event-driven programming, and efficient memory management.
+This project is an event-driven game engine built using the Entity-Component-System (ECS) architecture in C++. It demonstrates ECS patterns, event-driven programming, and efficient memory management.
 
 ## Features
 
--   **Entity-Component-System (ECS) Architecture:**
-    -   **Entity:** Represents a unique game object identifier.
-    -   **Component:** Holds data attributes for entities.
-    -   **System:** Contains logic to process entities with specific components.
+- **Entity-Component-System (ECS) Architecture:**
+  - **Entity:** Represents unique game object identifiers.
+  - **Component:** Stores data attributes for entities.
+  - **System:** Processes entities with specific components.
 
--   **Event-Driven Design:**
-    -   Implements an event bus system for communication between components and systems, promoting loose coupling and modularity.
+- **Event-Driven Design:**
+  - Implements an event bus for communication between components and systems, enhancing modularity.
 
--   **Memory Management:**
-    -   Utilizes custom memory pools and manual memory control to handle allocation and deallocation efficiently, crucial for real-time performance in gaming applications.
+- **Memory Management:**
+  - Custom memory pools and manual control ensure optimal performance for real-time game scenarios.
 
 ## Core Components
 
--   **EntityManager:** Manages the creation, deletion, and tracking of entities and their associated components.
+- **EntityManager:** Manages creation, deletion, and tracking of entities and components.
 
--   **Component:** Serves as a base class for all components, enabling polymorphic behavior and type identification.
+- **Component:** Base class for all components, allowing polymorphism.
 
--   **Systems:**
-    -   **CollisionManager:** Detects and responds to collisions between entities.
-    -   **InputManager:** Handles user input and translates it into game actions.
-    -   **MovementManager:** Updates entity positions based on their velocities and other movement parameters.
-    -   **PhysicsManager:** Applies physics calculations to entities, such as gravity and force applications.
-    -   **TerrainManager:** Manages terrain data and interactions between entities and the terrain.
+- **Systems:**
+  - **CollisionManager:** Handles collision detection.
+  - **InputManager:** Manages user input.
+  - **MovementManager:** Updates entity positions.
+  - **PhysicsManager:** Applies physics simulations.
+  - **TerrainManager:** Manages terrain interactions.
 
--   **Event System:**
-    -   **EventManager:** Manages the subscription and broadcasting of events between systems and components.
-    -   **Event:** Base class for all events, allowing for the creation of custom event types.
+- **Event System:**
+  - **EventManager:** Handles event subscription and broadcasting.
+  - **Event:** Base class for custom event types.
 
-## How It Works
-
-1.  **Entity Creation:** Entities are created and assigned unique identifiers.
-2.  **Component Attachment:** Components are attached to entities to define their data attributes.
-3.  **System Processing:** Systems process entities with specific components each frame.
-4.  **Event Handling:** Events are emitted and handled by subscribed systems to facilitate communication and trigger actions.
-
-## Getting Started
+## Installation and Setup
 
 ### Prerequisites
+- C++17 compatible compiler
+- CMake 3.10 or higher
+- SFML 3.0.0
 
--   C++17 compatible compiler
--   CMake 3.10 or higher
+### Installing SFML 3.0.0
+
+#### Windows
+1. Download pre-compiled binaries for SFML 3.0.0 from [SFML Website](https://www.sfml-dev.org/download.php).
+2. Extract to a folder, e.g., `C:\SFML`.
+3. Add SFML include and lib paths in your project settings.
+
+#### Linux (Ubuntu/Debian)
+```bash
+sudo apt-get install libsfml-dev
+```
+
+#### macOS
+Install via Homebrew:
+```bash
+brew install sfml
+```
 
 ### Building the Project
 
-1.  Clone the repository:
-
-    ```bash
-    git clone [https://github.com/JackLaingDev/gameEngine.git](https://github.com/JackLaingDev/gameEngine.git)
-    ```
-
-2.  Navigate to the project directory:
-
-    ```bash
-    cd gameEngine
-    ```
-
-3.  Create a build directory:
-
-    ```bash
-    mkdir build && cd build
-    ```
-
-4.  Run CMake to configure the project:
-
-    ```bash
-    cmake ..
-    ```
-
-5.  Build the project:
-
-    ```bash
-    make
-    ```
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/JackLaingDev/gameEngine.git
+   ```
+2. Navigate to the project:
+   ```bash
+   cd gameEngine
+   ```
+3. Create build directory:
+   ```bash
+   mkdir build && cd build
+   ```
+4. Configure the project:
+   ```bash
+   cmake .. -DSFML_DIR="path/to/SFML"
+   ```
+5. Build the project:
+   ```bash
+   make
+   ```
 
 ### Running the Engine
 
-After building, execute the engine binary located in the build directory:
-
+Execute the binary located in the build directory:
 ```bash
 ./gameEngine
+```
+
+## Contributing
+
+Contributions are welcome! Fork the repository and submit pull requests.
+
+## License
+
+Licensed under the MIT License. See [LICENSE.txt](LICENSE.txt) for details.
