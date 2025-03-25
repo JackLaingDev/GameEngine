@@ -16,27 +16,23 @@ void InputManager::update() {
         playerVelocity = entityManager->getComponent<VelocityComponent>(player);
     }
 
-    while (const std::optional eventSF = win->pollEvent()) {
-        processKeyEvents(eventSF);
-    }
-
     processHeldKeys(playerVelocity);
 }
 
-void InputManager::processKeyEvents(const std::optional<sf::Event> eventSF)
+void InputManager::processKeyPresses(const sf::Event::KeyPressed& eventSF)
 {
-    if (eventSF->is<sf::Event::KeyPressed>()) {
-        const auto* keyPressed = eventSF->getIf<sf::Event::KeyPressed>();
-        auto key = keyPressed->scancode;
+    auto key = eventSF.scancode;
 
-        heldKeys.insert(key);
-    }
-    if (eventSF->is<sf::Event::KeyReleased>()) {
-        const auto* keyReleased = eventSF->getIf<sf::Event::KeyReleased>();
-        auto key = keyReleased->scancode;
+    heldKeys.insert(key);
+    update();
+}
 
-        heldKeys.erase(key);
-    }
+void InputManager::processKeyReleases(const sf::Event::KeyReleased& eventSF)
+{
+    auto key = eventSF.scancode;
+
+    heldKeys.erase(key);
+    update();
 }
 
 void InputManager::processHeldKeys(VelocityComponent* playerVelocity)

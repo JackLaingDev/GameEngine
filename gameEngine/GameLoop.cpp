@@ -42,6 +42,13 @@ void GameLoop::run()
 	terrainManager->addRegion(sf::Vector2f(1300, 300), sf::Vector2f(300, 50), sf::Color::Blue);
 
 	// Subscribe Events
+	eventManager->subscribe<sf::Event::KeyPressed>([this](const sf::Event::KeyPressed& event) {
+		inputManager->processKeyPresses(event);
+		});
+
+	eventManager->subscribe<sf::Event::KeyReleased>([this](const sf::Event::KeyReleased& event) {
+		inputManager->processKeyReleases(event);
+		});
 
 	// Game Loop
 	while (isRunning) {
@@ -49,13 +56,12 @@ void GameLoop::run()
 		float deltaTime = clock.restart().asSeconds();
 
 		// Game Loop logic goes here
+		eventManager->pollSFMLEvents();
 		physicsManager->update(deltaTime);
-		inputManager->update();
 		movementManager->update(deltaTime);
 		collisionManager->collisionCheck();
 		terrainCollisionManager->terrainCollisionCheck();
-		//eventManager->publish();
-		//eventManager->events.clear();
+		eventManager->publish();
 		renderManager->renderTerrain();
 		renderManager->renderEntities();
 

@@ -30,7 +30,8 @@ public:
     InputManager(sf::Window* win, EventManager* eventManager, EntityManager* entityManager);
 
     void update();
-    void processKeyEvents(const std::optional<sf::Event> eventSF);
+    void processKeyPresses(const sf::Event::KeyPressed& eventSF);
+    void processKeyReleases(const sf::Event::KeyReleased& eventSF);
     void processHeldKeys(VelocityComponent* playerVelocity);
 };
 
