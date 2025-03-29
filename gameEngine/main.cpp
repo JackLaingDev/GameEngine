@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#include "GameLoop.h"
+#include "GameEngine.h"
 
 int main()
 {
@@ -23,7 +23,7 @@ int main()
     std::unique_ptr<EntityFactory> entityFactory = std::make_unique<EntityFactory>(entityManager.get());
 
     // Transfer ownership to game loop
-    GameLoop game(std::move(entityManager), std::move(eventManager), std::move(inputManager),
+    GameEngine game(std::move(entityManager), std::move(eventManager), std::move(inputManager),
         std::move(renderManager), std::move(movementManager), std::move(collisionManager),std::move(terrainManager),
         std::move(entityFactory), std::move(terrainCollisionManager), std::move(physicsManager));
 

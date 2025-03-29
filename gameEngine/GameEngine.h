@@ -1,5 +1,5 @@
-#ifndef GameLoop_H 
-#define GameLoop_H
+#ifndef GameEngine_H 
+#define GameEngine_H
 
 #include <iostream> 
 
@@ -14,7 +14,7 @@
 #include "TerrainCollisionManager.h"
 #include "PhysicsManager.h"
 
-class GameLoop {
+class GameEngine {
 private:
 
 	// Systems
@@ -33,7 +33,7 @@ private:
 
 public:
 
-	GameLoop(std::unique_ptr<EntityManager> entityManager, std::unique_ptr<EventManager> eventManager,
+	GameEngine(std::unique_ptr<EntityManager> entityManager, std::unique_ptr<EventManager> eventManager,
 		std::unique_ptr<InputManager> inputManager, std::unique_ptr<RenderManager> renderManager,
 		std::unique_ptr<MovementManager> movementManager, std::unique_ptr<CollisionManager> collisionManager,
 		std::unique_ptr<TerrainManager> terrainManager, std::unique_ptr<EntityFactory> entityFactory,

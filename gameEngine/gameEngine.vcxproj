@@ -140,9 +140,9 @@
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="EventManager.cpp" />
-    <ClCompile Include="gameEngine.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Components.cpp" />
-    <ClCompile Include="GameLoop.cpp" />
+    <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="MovementManager.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
@@ -162,7 +162,7 @@
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventManager.h" />
-    <ClInclude Include="GameLoop.h" />
+    <ClInclude Include="GameEngine.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="MovementManager.h" />
     <ClInclude Include="PhysicsManager.h" />

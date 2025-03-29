@@ -1,6 +1,6 @@
-#include "GameLoop.h"
+#include "GameEngine.h"
 
-GameLoop::GameLoop(std::unique_ptr<EntityManager> entityManager,
+GameEngine::GameEngine(std::unique_ptr<EntityManager> entityManager,
 	std::unique_ptr<EventManager> eventManager,
 	std::unique_ptr<InputManager> inputManager,
 	std::unique_ptr<RenderManager> renderManager,
@@ -25,7 +25,7 @@ GameLoop::GameLoop(std::unique_ptr<EntityManager> entityManager,
 }
 
 
-void GameLoop::run()
+void GameEngine::run()
 {
 	this->isRunning = true;
 	auto win = renderManager->getWindow();
