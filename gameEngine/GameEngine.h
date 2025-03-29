@@ -16,32 +16,32 @@
 
 class GameEngine {
 private:
+    std::unique_ptr<sf::RenderWindow> window;
 
-	// Systems
-	std::unique_ptr<EntityManager> entityManager;
-	std::unique_ptr<EventManager> eventManager;
-	std::unique_ptr<InputManager> inputManager;
-	std::unique_ptr<RenderManager> renderManager;
-	std::unique_ptr<MovementManager> movementManager;
-	std::unique_ptr<CollisionManager> collisionManager;
-	std::unique_ptr<EntityFactory> entityFactory;
-	std::unique_ptr<TerrainManager> terrainManager;
-	std::unique_ptr<TerrainCollisionManager> terrainCollisionManager;
-	std::unique_ptr<PhysicsManager> physicsManager;
 
-	bool isRunning;
+    // Systems (now initialized inside initialise())
+    std::unique_ptr<EntityManager> entityManager;
+    std::unique_ptr<EventManager> eventManager;
+    std::unique_ptr<InputManager> inputManager;
+    std::unique_ptr<RenderManager> renderManager;
+    std::unique_ptr<MovementManager> movementManager;
+    std::unique_ptr<CollisionManager> collisionManager;
+    std::unique_ptr<EntityFactory> entityFactory;
+    std::unique_ptr<TerrainManager> terrainManager;
+    std::unique_ptr<TerrainCollisionManager> terrainCollisionManager;
+    std::unique_ptr<PhysicsManager> physicsManager;
+
+    bool isRunning;
 
 public:
 
-	GameEngine(std::unique_ptr<EntityManager> entityManager, std::unique_ptr<EventManager> eventManager,
-		std::unique_ptr<InputManager> inputManager, std::unique_ptr<RenderManager> renderManager,
-		std::unique_ptr<MovementManager> movementManager, std::unique_ptr<CollisionManager> collisionManager,
-		std::unique_ptr<TerrainManager> terrainManager, std::unique_ptr<EntityFactory> entityFactory,
-		std::unique_ptr<TerrainCollisionManager> terrainCollisionManager, std::unique_ptr<PhysicsManager> physicsManager);
+    // Parameterless constructor explicitly added
+    GameEngine();
 
-	void run();
+    // Explicit initialise function to setup all systems
+    void initialise();
 
+    void run();
 };
 
-
-#endif 
+#endif
