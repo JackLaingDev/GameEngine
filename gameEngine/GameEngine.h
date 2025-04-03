@@ -39,7 +39,7 @@ public:
     GameEngine();
 
     // Explicit initialise function to setup all systems
-    void initialise();
+    void initialise(std::unique_ptr<sf::RenderWindow> win);
 
     void run();
 };

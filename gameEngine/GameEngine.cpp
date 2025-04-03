@@ -5,9 +5,9 @@ GameEngine::GameEngine()
     // Systems not yet created—this happens in initialise()
 }
 
-void GameEngine::initialise() {
+void GameEngine::initialise(std::unique_ptr<sf::RenderWindow> win) {
     // Initialise window
-    window = std::make_unique<sf::RenderWindow>(sf::VideoMode({ 1700, 900 }), "SFML window");
+    window = std::move(win);
 
     // Initialise systems
     entityManager = std::make_unique<EntityManager>();

@@ -9,6 +9,8 @@ int main()
 {
     GameEngine game;
 
-    game.initialise();
+    std::unique_ptr<sf::RenderWindow> window = std::make_unique<sf::RenderWindow>(sf::VideoMode({ 1700, 900 }), "SFML window");
+
+    game.initialise(std::move(window));
     game.run();
 }
