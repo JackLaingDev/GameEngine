@@ -1,14 +1,13 @@
-#ifndef RenderManager_H 
-#define RenderManager_H
+#pragma once
 
 #include <iostream>
-#include <SFML/Window.hpp>
+#include <memory>
 #include <SFML/Graphics.hpp>
+#include <SFML/Window/WindowHandle.hpp>
 
-#include "EntityManager.h"
-#include "TerrainManager.h"
+class EntityManager;
+class TerrainManager;
 
-// Class declaration
 class RenderManager {
 private:
     std::unique_ptr<sf::RenderWindow> window;
@@ -16,14 +15,8 @@ private:
     TerrainManager* terrainManager;
 
 public:
-    
-    RenderManager(std::unique_ptr<sf::RenderWindow> window, EntityManager* entityManager, TerrainManager* terrainManager);
-
+    RenderManager(sf::WindowHandle hwnd, EntityManager* entityManager, TerrainManager* terrainManager);
+    sf::RenderWindow* getWindow();
     void renderEntities();
     void renderTerrain();
-
-    sf::RenderWindow* getWindow();
-
 };
-
-#endif 

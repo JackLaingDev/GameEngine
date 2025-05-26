@@ -1,27 +1,39 @@
 #include "GameEngine.h"
+#include "EntityManager.h"
+#include "EventManager.h"
+#include "InputManager.h"
+#include "TerrainManager.h"
+#include "RenderManager.h"
+#include "MovementManager.h"
+#include "CollisionManager.h"
+#include "TerrainCollisionManager.h"
+#include "PhysicsManager.h"
+#include "EntityFactory.h"
 
-GameEngine::GameEngine()
-    : isRunning(false) {
-    // Systems not yet created—this happens in initialise()
-}
+#include <iostream>
+#include <SFML/Graphics.hpp> // Includes sf::Event, sf::Color, sf::Clock etc.
+#include <optional>          // For std::optional
 
-void GameEngine::initialise(std::unique_ptr<sf::RenderWindow> win) {
-    // Initialise window
-    window = std::move(win);
+GameEngine::GameEngine() : isRunning(false) {}
 
-    // Initialise systems
+void GameEngine::initialise(sf::WindowHandle hwnd) {
     entityManager = std::make_unique<EntityManager>();
-    eventManager = std::make_unique<EventManager>(window.get());
-    inputManager = std::make_unique<InputManager>(window.get(), eventManager.get(), entityManager.get());
     terrainManager = std::make_unique<TerrainManager>();
-    renderManager = std::make_unique<RenderManager>(std::move(window), entityManager.get(), terrainManager.get());
-    movementManager = std::make_unique<MovementManager>(entityManager.get());
-    collisionManager = std::make_unique<CollisionManager>(eventManager.get(), entityManager.get());
-    terrainCollisionManager = std::make_unique<TerrainCollisionManager>(eventManager.get(), entityManager.get(), terrainManager.get());
-    physicsManager = std::make_unique<PhysicsManager>(entityManager.get());
-    entityFactory = std::make_unique<EntityFactory>(entityManager.get());
 
-    // Initial setup (entities, terrain, events) moved here
+    renderManager = std::make_unique<RenderManager>(hwnd, entityManager.get(), terrainManager.get());
+
+    sf::RenderWindow* sfmlWindowPtr = renderManager->getWindow();
+
+    if (sfmlWindowPtr) {
+        eventManager = std::make_unique<EventManager>(sfmlWindowPtr);
+        inputManager = std::make_unique<InputManager>(sfmlWindowPtr, eventManager.get(), entityManager.get());
+    }
+    else {
+        std::cerr << "ERROR: RenderManager or its SFML window not initialized correctly in GameEngine::initialise.\n";
+        return;
+    }
+
+    entityFactory = std::make_unique<EntityFactory>(entityManager.get());
     entityFactory->playerEntity(1);
     entityFactory->testEntity(2);
 
@@ -29,12 +41,14 @@ void GameEngine::initialise(std::unique_ptr<sf::RenderWindow> win) {
     terrainManager->addRegion(sf::Vector2f(0, 300), sf::Vector2f(300, 50), sf::Color::Blue);
     terrainManager->addRegion(sf::Vector2f(1300, 300), sf::Vector2f(300, 50), sf::Color::Blue);
 
-    eventManager->subscribe<sf::Event::KeyPressed>([this](const sf::Event::KeyPressed& event) {
-        inputManager->processKeyPresses(event);
+    eventManager->subscribe<sf::Event::KeyPressed>([this](const sf::Event::KeyPressed& keyPressEvent) {
+
+        inputManager->processKeyPresses(keyPressEvent); // Pass the specific keyPressEvent
         });
 
-    eventManager->subscribe<sf::Event::KeyReleased>([this](const sf::Event::KeyReleased& event) {
-        inputManager->processKeyReleases(event);
+    eventManager->subscribe<sf::Event::KeyReleased>([this](const sf::Event::KeyReleased& keyReleaseEvent) {
+        // No need to check keyReleaseEvent.type here
+        inputManager->processKeyReleases(keyReleaseEvent); // Pass the specific keyReleaseEvent
         });
 
     eventManager->subscribe(eventType::collisionDetected, [](const Event& event) {
@@ -44,19 +58,47 @@ void GameEngine::initialise(std::unique_ptr<sf::RenderWindow> win) {
 
 void GameEngine::run() {
     this->isRunning = true;
-    auto win = renderManager->getWindow();
     sf::Clock clock;
 
-    while (isRunning) {
+    if (!renderManager || !renderManager->getWindow() || !renderManager->getWindow()->isOpen()) {
+        std::cerr << "ERROR: SFML RenderWindow not initialized or not open. Cannot start game loop.\n";
+        isRunning = false;
+        return;
+    }
+
+    while (isRunning && renderManager->getWindow()->isOpen()) {
         float deltaTime = clock.restart().asSeconds();
 
-        eventManager->pollSFMLEvents();
+        // CORRECTED: Poll SFML events using the SFML 3.0 signature: pollEvent() returns std::optional<sf::Event>
+        while (std::optional<sf::Event> eventOpt = renderManager->getWindow()->pollEvent()) {
+            if (eventOpt.has_value()) { // Check if an event was actually returned
+                eventManager->enqueue(*eventOpt); // Enqueue the actual sf::Event object
+            }
+        }
+
+        inputManager->update();
+
         physicsManager->update(deltaTime);
         movementManager->update(deltaTime);
         collisionManager->collisionCheck();
         terrainCollisionManager->terrainCollisionCheck();
-        eventManager->publish();
+        eventManager->publish(); // Publish both custom and SFML events
+
+        renderManager->getWindow()->clear(sf::Color::Black);
+
         renderManager->renderTerrain();
         renderManager->renderEntities();
+
+        renderManager->getWindow()->display();
     }
+
+    if (renderManager && renderManager->getWindow() && renderManager->getWindow()->isOpen()) {
+        renderManager->getWindow()->close();
+        std::cout << "GameEngine run loop finished. SFML Window closed.\n";
+    }
+}
+
+void GameEngine::stop() {
+    isRunning = false;
+    std::cout << "GameEngine stop() called. Signaling loop termination.\n";
 }

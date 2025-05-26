@@ -1,25 +1,23 @@
-#ifndef GameEngine_H 
-#define GameEngine_H
+#pragma once
 
-#include <iostream> 
+#include <iostream>
+#include <memory>
+#include <SFML/Window/WindowHandle.hpp>
 
-#include "EntityManager.h"
-#include "EventManager.h"
-#include "InputManager.h"
-#include "RenderManager.h"
-#include "MovementManager.h"
-#include "EntityFactory.h"
-#include "CollisionManager.h"
-#include "TerrainManager.h"
-#include "TerrainCollisionManager.h"
-#include "PhysicsManager.h"
+// Forward declare your manager classes
+class EntityManager;
+class EventManager;
+class InputManager;
+class RenderManager;
+class MovementManager;
+class CollisionManager;
+class EntityFactory;
+class TerrainManager;
+class TerrainCollisionManager;
+class PhysicsManager;
 
 class GameEngine {
 private:
-    std::unique_ptr<sf::RenderWindow> window;
-
-
-    // Systems (now initialized inside initialise())
     std::unique_ptr<EntityManager> entityManager;
     std::unique_ptr<EventManager> eventManager;
     std::unique_ptr<InputManager> inputManager;
@@ -34,14 +32,8 @@ private:
     bool isRunning;
 
 public:
-
-    // Parameterless constructor explicitly added
     GameEngine();
-
-    // Explicit initialise function to setup all systems
-    void initialise(std::unique_ptr<sf::RenderWindow> win);
-
+    void initialise(sf::WindowHandle hwnd);
     void run();
+    void stop();
 };
-
-#endif

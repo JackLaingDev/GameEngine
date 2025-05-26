@@ -1,35 +1,26 @@
-#ifndef InputManager_H 
+#ifndef InputManager_H
 #define InputManager_H
 
-#include <iostream> 
+#include <iostream>
 #include <unordered_set>
 #include <algorithm>
-#include <SFML/Window.hpp>
-#include <SFML/Graphics.hpp>
-
+#include <SFML/Graphics.hpp> // For sf::RenderWindow and SFML event types like sf::Event::KeyPressed
 #include "EventManager.h"
 #include "EntityManager.h"
+#include "Entity.h"            // Assuming you use this
 
-// Class declaration
 class InputManager {
 private:
-
-    sf::Window* win;
+    sf::RenderWindow* window;
     EventManager* eventManager;
     EntityManager* entityManager;
-
     std::unordered_set<sf::Keyboard::Scancode> heldKeys;
-
-    Entity player = Entity(0);
-    VelocityComponent* playerVelocity = new VelocityComponent(sf::Vector2f(0, 0));
-
     float speed = 200;
 
 public:
-
-    InputManager(sf::Window* win, EventManager* eventManager, EntityManager* entityManager);
-
+    InputManager(sf::RenderWindow* win_ptr, EventManager* eventManager, EntityManager* entityManager);
     void update();
+
     void processKeyPresses(const sf::Event::KeyPressed& eventSF);
     void processKeyReleases(const sf::Event::KeyReleased& eventSF);
     void processHeldKeys(VelocityComponent* playerVelocity);
